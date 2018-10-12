@@ -1,0 +1,6 @@
+framework module LDMainFramework {
+  umbrella header "LDMainFramework-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,949 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B4301BBD312795ABB67737F /* Pods_ChorusRFLaptimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A3ADA269E6D2DC374923F7 /* Pods_ChorusRFLaptimer.framework */; };
+		7E1F87B41FA53DEC00B28360 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7E1F87AF1FA50AB200B28360 /* GoogleService-Info.plist */; };
+		7E1F87B71FA53EE500B28360 /* ServiceAccount.json in Resources */ = {isa = PBXBuildFile; fileRef = 7E1F87B61FA53EE300B28360 /* ServiceAccount.json */; };
+		7E8FA82B1F6ACFFD00F979BD /* ChorusRFLaptimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8FA82A1F6ACFFD00F979BD /* ChorusRFLaptimerTests.swift */; };
+		7E8FA8361F6ACFFD00F979BD /* ChorusRFLaptimerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8FA8351F6ACFFD00F979BD /* ChorusRFLaptimerUITests.swift */; };
+		9D25DF6F215ECB8500F63A07 /* FreqTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF36215ECB8400F63A07 /* FreqTVC.xib */; };
+		9D25DF70215ECB8500F63A07 /* RacePilotTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF37215ECB8400F63A07 /* RacePilotTVC.xib */; };
+		9D25DF71215ECB8500F63A07 /* PilotTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF38215ECB8400F63A07 /* PilotTVC.xib */; };
+		9D25DF72215ECB8500F63A07 /* RacePilotLapTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF39215ECB8400F63A07 /* RacePilotLapTVC.xib */; };
+		9D25DF73215ECB8500F63A07 /* BluetoothTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF3A215ECB8400F63A07 /* BluetoothTVC.xib */; };
+		9D25DF74215ECB8500F63A07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF3C215ECB8400F63A07 /* LaunchScreen.storyboard */; };
+		9D25DF75215ECB8500F63A07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF3D215ECB8400F63A07 /* Main.storyboard */; };
+		9D25DF76215ECB8500F63A07 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF40215ECB8400F63A07 /* SplashVC.swift */; };
+		9D25DF77215ECB8500F63A07 /* FreqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF42215ECB8400F63A07 /* FreqVC.swift */; };
+		9D25DF78215ECB8500F63A07 /* FreqTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF43215ECB8400F63A07 /* FreqTVC.swift */; };
+		9D25DF79215ECB8500F63A07 /* SpectrumVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF45215ECB8400F63A07 /* SpectrumVC.swift */; };
+		9D25DF7A215ECB8500F63A07 /* SetupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF46215ECB8400F63A07 /* SetupVC.swift */; };
+		9D25DF7B215ECB8500F63A07 /* PilotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF48215ECB8400F63A07 /* PilotVC.swift */; };
+		9D25DF7C215ECB8500F63A07 /* PilotTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF49215ECB8400F63A07 /* PilotTVC.swift */; };
+		9D25DF7D215ECB8500F63A07 /* GraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF4A215ECB8400F63A07 /* GraphVC.swift */; };
+		9D25DF7E215ECB8500F63A07 /* RacePilotTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF4C215ECB8400F63A07 /* RacePilotTVC.swift */; };
+		9D25DF7F215ECB8500F63A07 /* RaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF4D215ECB8400F63A07 /* RaceVC.swift */; };
+		9D25DF80215ECB8500F63A07 /* RacePilotLapTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF4E215ECB8400F63A07 /* RacePilotLapTVC.swift */; };
+		9D25DF81215ECB8500F63A07 /* ConnectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF50215ECB8400F63A07 /* ConnectVC.swift */; };
+		9D25DF82215ECB8500F63A07 /* BluetoothTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF51215ECB8400F63A07 /* BluetoothTVC.swift */; };
+		9D25DF83215ECB8500F63A07 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF54215ECB8500F63A07 /* Constants.swift */; };
+		9D25DF84215ECB8500F63A07 /* CRFData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF55215ECB8500F63A07 /* CRFData.swift */; };
+		9D25DF85215ECB8500F63A07 /* CSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF57215ECB8500F63A07 /* CSVExporter.swift */; };
+		9D25DF87215ECB8500F63A07 /* CRFUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF59215ECB8500F63A07 /* CRFUtility.swift */; };
+		9D25DF89215ECB8500F63A07 /* CRFUDPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF5C215ECB8500F63A07 /* CRFUDPManager.swift */; };
+		9D25DF8A215ECB8500F63A07 /* UDPBroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF5F215ECB8500F63A07 /* UDPBroadcastConnection.swift */; };
+		9D25DF8B215ECB8500F63A07 /* CRFMessageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF60215ECB8500F63A07 /* CRFMessageParser.swift */; };
+		9D25DF8D215ECB8500F63A07 /* CRFSendCommandManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF62215ECB8500F63A07 /* CRFSendCommandManager.swift */; };
+		9D25DF8E215ECB8500F63A07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF63215ECB8500F63A07 /* AppDelegate.swift */; };
+		9D25DF8F215ECB8500F63A07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D25DF66215ECB8500F63A07 /* Assets.xcassets */; };
+		9D25DF93215ECB8500F63A07 /* CRFLap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF6C215ECB8500F63A07 /* CRFLap.swift */; };
+		9D25DF94215ECB8500F63A07 /* CRFPilot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D25DF6D215ECB8500F63A07 /* CRFPilot.swift */; };
+		9D926CA3215ECCEC00B2494D /* Identifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D926CA2215ECCEB00B2494D /* Identifiers.swift */; };
+		9D926CA8215ED0B000B2494D /* beep2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D926CA6215ED0AF00B2494D /* beep2.mp3 */; };
+		9D926CA9215ED0B000B2494D /* beep1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9D926CA7215ED0B000B2494D /* beep1.mp3 */; };
+		9D926CAD215F832700B2494D /* CRFBTManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D926CAC215F832600B2494D /* CRFBTManager.swift */; };
+		9D926CB0215F83F400B2494D /* BluetoothSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D926CAF215F83F400B2494D /* BluetoothSerial.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7E8FA8271F6ACFFD00F979BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E8FA80A1F6ACFFD00F979BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E8FA8111F6ACFFD00F979BD;
+			remoteInfo = ChorusRFLaptimer;
+		};
+		7E8FA8321F6ACFFD00F979BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E8FA80A1F6ACFFD00F979BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E8FA8111F6ACFFD00F979BD;
+			remoteInfo = ChorusRFLaptimer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0E4A5C360833742CD9915EC7 /* Pods-ChorusRFLaptimer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChorusRFLaptimer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChorusRFLaptimer/Pods-ChorusRFLaptimer.debug.xcconfig"; sourceTree = "<group>"; };
+		483B357FE00DBB3AF2C62157 /* Pods-ChorusRFLaptimer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChorusRFLaptimer.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChorusRFLaptimer/Pods-ChorusRFLaptimer.release.xcconfig"; sourceTree = "<group>"; };
+		7E1F87AF1FA50AB200B28360 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		7E1F87B61FA53EE300B28360 /* ServiceAccount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = ServiceAccount.json; path = CrashReportingKey/ServiceAccount.json; sourceTree = SOURCE_ROOT; };
+		7E8FA8121F6ACFFD00F979BD /* Chorus Lap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chorus Lap.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E8FA8261F6ACFFD00F979BD /* ChorusRFLaptimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChorusRFLaptimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E8FA82A1F6ACFFD00F979BD /* ChorusRFLaptimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChorusRFLaptimerTests.swift; sourceTree = "<group>"; };
+		7E8FA82C1F6ACFFD00F979BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E8FA8311F6ACFFD00F979BD /* ChorusRFLaptimerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChorusRFLaptimerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E8FA8351F6ACFFD00F979BD /* ChorusRFLaptimerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChorusRFLaptimerUITests.swift; sourceTree = "<group>"; };
+		7E8FA8371F6ACFFD00F979BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D25DF33215ECB8400F63A07 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D25DF36215ECB8400F63A07 /* FreqTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreqTVC.xib; sourceTree = "<group>"; };
+		9D25DF37215ECB8400F63A07 /* RacePilotTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RacePilotTVC.xib; sourceTree = "<group>"; };
+		9D25DF38215ECB8400F63A07 /* PilotTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PilotTVC.xib; sourceTree = "<group>"; };
+		9D25DF39215ECB8400F63A07 /* RacePilotLapTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RacePilotLapTVC.xib; sourceTree = "<group>"; };
+		9D25DF3A215ECB8400F63A07 /* BluetoothTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BluetoothTVC.xib; sourceTree = "<group>"; };
+		9D25DF3C215ECB8400F63A07 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9D25DF3D215ECB8400F63A07 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9D25DF40215ECB8400F63A07 /* SplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		9D25DF42215ECB8400F63A07 /* FreqVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreqVC.swift; sourceTree = "<group>"; };
+		9D25DF43215ECB8400F63A07 /* FreqTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreqTVC.swift; sourceTree = "<group>"; };
+		9D25DF45215ECB8400F63A07 /* SpectrumVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpectrumVC.swift; sourceTree = "<group>"; };
+		9D25DF46215ECB8400F63A07 /* SetupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupVC.swift; sourceTree = "<group>"; };
+		9D25DF48215ECB8400F63A07 /* PilotVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PilotVC.swift; sourceTree = "<group>"; };
+		9D25DF49215ECB8400F63A07 /* PilotTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PilotTVC.swift; sourceTree = "<group>"; };
+		9D25DF4A215ECB8400F63A07 /* GraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphVC.swift; sourceTree = "<group>"; };
+		9D25DF4C215ECB8400F63A07 /* RacePilotTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacePilotTVC.swift; sourceTree = "<group>"; };
+		9D25DF4D215ECB8400F63A07 /* RaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceVC.swift; sourceTree = "<group>"; };
+		9D25DF4E215ECB8400F63A07 /* RacePilotLapTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacePilotLapTVC.swift; sourceTree = "<group>"; };
+		9D25DF50215ECB8400F63A07 /* ConnectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectVC.swift; sourceTree = "<group>"; };
+		9D25DF51215ECB8400F63A07 /* BluetoothTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothTVC.swift; sourceTree = "<group>"; };
+		9D25DF54215ECB8500F63A07 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9D25DF55215ECB8500F63A07 /* CRFData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFData.swift; sourceTree = "<group>"; };
+		9D25DF57215ECB8500F63A07 /* CSVExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVExporter.swift; sourceTree = "<group>"; };
+		9D25DF59215ECB8500F63A07 /* CRFUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFUtility.swift; sourceTree = "<group>"; };
+		9D25DF5C215ECB8500F63A07 /* CRFUDPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFUDPManager.swift; sourceTree = "<group>"; };
+		9D25DF5E215ECB8500F63A07 /* UDPBroadcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPBroadcast.h; sourceTree = "<group>"; };
+		9D25DF5F215ECB8500F63A07 /* UDPBroadcastConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPBroadcastConnection.swift; sourceTree = "<group>"; };
+		9D25DF60215ECB8500F63A07 /* CRFMessageParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFMessageParser.swift; sourceTree = "<group>"; };
+		9D25DF62215ECB8500F63A07 /* CRFSendCommandManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFSendCommandManager.swift; sourceTree = "<group>"; };
+		9D25DF63215ECB8500F63A07 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9D25DF66215ECB8500F63A07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9D25DF6C215ECB8500F63A07 /* CRFLap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFLap.swift; sourceTree = "<group>"; };
+		9D25DF6D215ECB8500F63A07 /* CRFPilot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFPilot.swift; sourceTree = "<group>"; };
+		9D926CA2215ECCEB00B2494D /* Identifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Identifiers.swift; sourceTree = "<group>"; };
+		9D926CA6215ED0AF00B2494D /* beep2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep2.mp3; sourceTree = "<group>"; };
+		9D926CA7215ED0B000B2494D /* beep1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep1.mp3; sourceTree = "<group>"; };
+		9D926CAC215F832600B2494D /* CRFBTManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CRFBTManager.swift; sourceTree = "<group>"; };
+		9D926CAF215F83F400B2494D /* BluetoothSerial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothSerial.swift; sourceTree = "<group>"; };
+		9D926CB1215F92E800B2494D /* Chorus Lap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Chorus Lap.entitlements"; sourceTree = "<group>"; };
+		A5A3ADA269E6D2DC374923F7 /* Pods_ChorusRFLaptimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChorusRFLaptimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E8FA80F1F6ACFFD00F979BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1B4301BBD312795ABB67737F /* Pods_ChorusRFLaptimer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E8FA8231F6ACFFD00F979BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E8FA82E1F6ACFFD00F979BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19CFB338C546C244E99245CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5A3ADA269E6D2DC374923F7 /* Pods_ChorusRFLaptimer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		23BD8977D45C42C04E08DD21 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E4A5C360833742CD9915EC7 /* Pods-ChorusRFLaptimer.debug.xcconfig */,
+				483B357FE00DBB3AF2C62157 /* Pods-ChorusRFLaptimer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7E8FA8091F6ACFFD00F979BD = {
+			isa = PBXGroup;
+			children = (
+				7E8FA8141F6ACFFD00F979BD /* ChorusRFLaptimer */,
+				7E8FA8291F6ACFFD00F979BD /* ChorusRFLaptimerTests */,
+				7E8FA8341F6ACFFD00F979BD /* ChorusRFLaptimerUITests */,
+				7E8FA8131F6ACFFD00F979BD /* Products */,
+				23BD8977D45C42C04E08DD21 /* Pods */,
+				19CFB338C546C244E99245CC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7E8FA8131F6ACFFD00F979BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E8FA8121F6ACFFD00F979BD /* Chorus Lap.app */,
+				7E8FA8261F6ACFFD00F979BD /* ChorusRFLaptimerTests.xctest */,
+				7E8FA8311F6ACFFD00F979BD /* ChorusRFLaptimerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E8FA8141F6ACFFD00F979BD /* ChorusRFLaptimer */ = {
+			isa = PBXGroup;
+			children = (
+				9D926CB1215F92E800B2494D /* Chorus Lap.entitlements */,
+				7E1F87AF1FA50AB200B28360 /* GoogleService-Info.plist */,
+				7E1F87B61FA53EE300B28360 /* ServiceAccount.json */,
+				9D25DF52215ECB8500F63A07 /* AppCore */,
+				9D25DF34215ECB8400F63A07 /* InterfaceComponents */,
+				9D25DF6B215ECB8500F63A07 /* Models */,
+				9D25DF64215ECB8500F63A07 /* Resources */,
+				9D25DF30215ECB8400F63A07 /* Targets */,
+			);
+			path = ChorusRFLaptimer;
+			sourceTree = "<group>";
+		};
+		7E8FA8291F6ACFFD00F979BD /* ChorusRFLaptimerTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E8FA82A1F6ACFFD00F979BD /* ChorusRFLaptimerTests.swift */,
+				7E8FA82C1F6ACFFD00F979BD /* Info.plist */,
+			);
+			path = ChorusRFLaptimerTests;
+			sourceTree = "<group>";
+		};
+		7E8FA8341F6ACFFD00F979BD /* ChorusRFLaptimerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E8FA8351F6ACFFD00F979BD /* ChorusRFLaptimerUITests.swift */,
+				7E8FA8371F6ACFFD00F979BD /* Info.plist */,
+			);
+			path = ChorusRFLaptimerUITests;
+			sourceTree = "<group>";
+		};
+		9D25DF30215ECB8400F63A07 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF31215ECB8400F63A07 /* Prod */,
+				9D25DF32215ECB8400F63A07 /* Dev */,
+			);
+			path = Targets;
+			sourceTree = "<group>";
+		};
+		9D25DF31215ECB8400F63A07 /* Prod */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Prod;
+			sourceTree = "<group>";
+		};
+		9D25DF32215ECB8400F63A07 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF33215ECB8400F63A07 /* Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
+		9D25DF34215ECB8400F63A07 /* InterfaceComponents */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF35215ECB8400F63A07 /* Xibs */,
+				9D25DF3B215ECB8400F63A07 /* Storyboards */,
+				9D25DF3E215ECB8400F63A07 /* Controllers */,
+			);
+			path = InterfaceComponents;
+			sourceTree = "<group>";
+		};
+		9D25DF35215ECB8400F63A07 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF36215ECB8400F63A07 /* FreqTVC.xib */,
+				9D25DF38215ECB8400F63A07 /* PilotTVC.xib */,
+				9D25DF37215ECB8400F63A07 /* RacePilotTVC.xib */,
+				9D25DF39215ECB8400F63A07 /* RacePilotLapTVC.xib */,
+				9D25DF3A215ECB8400F63A07 /* BluetoothTVC.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		9D25DF3B215ECB8400F63A07 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF3C215ECB8400F63A07 /* LaunchScreen.storyboard */,
+				9D25DF3D215ECB8400F63A07 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		9D25DF3E215ECB8400F63A07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF3F215ECB8400F63A07 /* Splash */,
+				9D25DF44215ECB8400F63A07 /* Setup */,
+				9D25DF41215ECB8400F63A07 /* Frequency */,
+				9D25DF47215ECB8400F63A07 /* Pilots */,
+				9D25DF4B215ECB8400F63A07 /* Race */,
+				9D25DF4F215ECB8400F63A07 /* Connect */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9D25DF3F215ECB8400F63A07 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF40215ECB8400F63A07 /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		9D25DF41215ECB8400F63A07 /* Frequency */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF42215ECB8400F63A07 /* FreqVC.swift */,
+				9D25DF43215ECB8400F63A07 /* FreqTVC.swift */,
+			);
+			path = Frequency;
+			sourceTree = "<group>";
+		};
+		9D25DF44215ECB8400F63A07 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF46215ECB8400F63A07 /* SetupVC.swift */,
+				9D25DF45215ECB8400F63A07 /* SpectrumVC.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		9D25DF47215ECB8400F63A07 /* Pilots */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF48215ECB8400F63A07 /* PilotVC.swift */,
+				9D25DF49215ECB8400F63A07 /* PilotTVC.swift */,
+				9D25DF4A215ECB8400F63A07 /* GraphVC.swift */,
+			);
+			path = Pilots;
+			sourceTree = "<group>";
+		};
+		9D25DF4B215ECB8400F63A07 /* Race */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF4D215ECB8400F63A07 /* RaceVC.swift */,
+				9D25DF4C215ECB8400F63A07 /* RacePilotTVC.swift */,
+				9D25DF4E215ECB8400F63A07 /* RacePilotLapTVC.swift */,
+			);
+			path = Race;
+			sourceTree = "<group>";
+		};
+		9D25DF4F215ECB8400F63A07 /* Connect */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF50215ECB8400F63A07 /* ConnectVC.swift */,
+				9D25DF51215ECB8400F63A07 /* BluetoothTVC.swift */,
+			);
+			path = Connect;
+			sourceTree = "<group>";
+		};
+		9D25DF52215ECB8500F63A07 /* AppCore */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF53215ECB8500F63A07 /* Config */,
+				9D25DF56215ECB8500F63A07 /* CRFUtility */,
+				9D25DF5B215ECB8500F63A07 /* CRFService */,
+				9D25DF55215ECB8500F63A07 /* CRFData.swift */,
+				9D25DF63215ECB8500F63A07 /* AppDelegate.swift */,
+			);
+			path = AppCore;
+			sourceTree = "<group>";
+		};
+		9D25DF53215ECB8500F63A07 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF54215ECB8500F63A07 /* Constants.swift */,
+				9D926CA2215ECCEB00B2494D /* Identifiers.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		9D25DF56215ECB8500F63A07 /* CRFUtility */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF57215ECB8500F63A07 /* CSVExporter.swift */,
+				9D25DF59215ECB8500F63A07 /* CRFUtility.swift */,
+			);
+			path = CRFUtility;
+			sourceTree = "<group>";
+		};
+		9D25DF5B215ECB8500F63A07 /* CRFService */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF5D215ECB8500F63A07 /* UDPBroadcast */,
+				9D926CAE215F83F400B2494D /* BTSerial */,
+				9D25DF5C215ECB8500F63A07 /* CRFUDPManager.swift */,
+				9D926CAC215F832600B2494D /* CRFBTManager.swift */,
+				9D25DF60215ECB8500F63A07 /* CRFMessageParser.swift */,
+				9D25DF62215ECB8500F63A07 /* CRFSendCommandManager.swift */,
+			);
+			path = CRFService;
+			sourceTree = "<group>";
+		};
+		9D25DF5D215ECB8500F63A07 /* UDPBroadcast */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF5E215ECB8500F63A07 /* UDPBroadcast.h */,
+				9D25DF5F215ECB8500F63A07 /* UDPBroadcastConnection.swift */,
+			);
+			path = UDPBroadcast;
+			sourceTree = "<group>";
+		};
+		9D25DF64215ECB8500F63A07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF65215ECB8500F63A07 /* Images */,
+				9D25DF67215ECB8500F63A07 /* Audio */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9D25DF65215ECB8500F63A07 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF66215ECB8500F63A07 /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		9D25DF67215ECB8500F63A07 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				9D926CA7215ED0B000B2494D /* beep1.mp3 */,
+				9D926CA6215ED0AF00B2494D /* beep2.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		9D25DF6B215ECB8500F63A07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9D25DF6C215ECB8500F63A07 /* CRFLap.swift */,
+				9D25DF6D215ECB8500F63A07 /* CRFPilot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9D926CAE215F83F400B2494D /* BTSerial */ = {
+			isa = PBXGroup;
+			children = (
+				9D926CAF215F83F400B2494D /* BluetoothSerial.swift */,
+			);
+			path = BTSerial;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E8FA8111F6ACFFD00F979BD /* ChorusRFLaptimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E8FA83A1F6ACFFD00F979BD /* Build configuration list for PBXNativeTarget "ChorusRFLaptimer" */;
+			buildPhases = (
+				3F40CC9075D01F728432A7BE /* [CP] Check Pods Manifest.lock */,
+				7E8FA80E1F6ACFFD00F979BD /* Sources */,
+				7E8FA80F1F6ACFFD00F979BD /* Frameworks */,
+				7E8FA8101F6ACFFD00F979BD /* Resources */,
+				8891BD6FCFED4ECB3A650EC8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ChorusRFLaptimer;
+			productName = ChorusRFLaptimer;
+			productReference = 7E8FA8121F6ACFFD00F979BD /* Chorus Lap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7E8FA8251F6ACFFD00F979BD /* ChorusRFLaptimerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E8FA83D1F6ACFFD00F979BD /* Build configuration list for PBXNativeTarget "ChorusRFLaptimerTests" */;
+			buildPhases = (
+				7E8FA8221F6ACFFD00F979BD /* Sources */,
+				7E8FA8231F6ACFFD00F979BD /* Frameworks */,
+				7E8FA8241F6ACFFD00F979BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E8FA8281F6ACFFD00F979BD /* PBXTargetDependency */,
+			);
+			name = ChorusRFLaptimerTests;
+			productName = ChorusRFLaptimerTests;
+			productReference = 7E8FA8261F6ACFFD00F979BD /* ChorusRFLaptimerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7E8FA8301F6ACFFD00F979BD /* ChorusRFLaptimerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E8FA8401F6ACFFD00F979BD /* Build configuration list for PBXNativeTarget "ChorusRFLaptimerUITests" */;
+			buildPhases = (
+				7E8FA82D1F6ACFFD00F979BD /* Sources */,
+				7E8FA82E1F6ACFFD00F979BD /* Frameworks */,
+				7E8FA82F1F6ACFFD00F979BD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E8FA8331F6ACFFD00F979BD /* PBXTargetDependency */,
+			);
+			name = ChorusRFLaptimerUITests;
+			productName = ChorusRFLaptimerUITests;
+			productReference = 7E8FA8311F6ACFFD00F979BD /* ChorusRFLaptimerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E8FA80A1F6ACFFD00F979BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = Lazar;
+				TargetAttributes = {
+					7E8FA8111F6ACFFD00F979BD = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = E5FYD94489;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					7E8FA8251F6ACFFD00F979BD = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7E8FA8111F6ACFFD00F979BD;
+					};
+					7E8FA8301F6ACFFD00F979BD = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 7E8FA8111F6ACFFD00F979BD;
+					};
+				};
+			};
+			buildConfigurationList = 7E8FA80D1F6ACFFD00F979BD /* Build configuration list for PBXProject "ChorusRFLaptimer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7E8FA8091F6ACFFD00F979BD;
+			productRefGroup = 7E8FA8131F6ACFFD00F979BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E8FA8111F6ACFFD00F979BD /* ChorusRFLaptimer */,
+				7E8FA8251F6ACFFD00F979BD /* ChorusRFLaptimerTests */,
+				7E8FA8301F6ACFFD00F979BD /* ChorusRFLaptimerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E8FA8101F6ACFFD00F979BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D25DF74215ECB8500F63A07 /* LaunchScreen.storyboard in Resources */,
+				9D25DF75215ECB8500F63A07 /* Main.storyboard in Resources */,
+				9D25DF8F215ECB8500F63A07 /* Assets.xcassets in Resources */,
+				9D25DF71215ECB8500F63A07 /* PilotTVC.xib in Resources */,
+				9D25DF70215ECB8500F63A07 /* RacePilotTVC.xib in Resources */,
+				7E1F87B71FA53EE500B28360 /* ServiceAccount.json in Resources */,
+				7E1F87B41FA53DEC00B28360 /* GoogleService-Info.plist in Resources */,
+				9D926CA9215ED0B000B2494D /* beep1.mp3 in Resources */,
+				9D25DF73215ECB8500F63A07 /* BluetoothTVC.xib in Resources */,
+				9D926CA8215ED0B000B2494D /* beep2.mp3 in Resources */,
+				9D25DF6F215ECB8500F63A07 /* FreqTVC.xib in Resources */,
+				9D25DF72215ECB8500F63A07 /* RacePilotLapTVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E8FA8241F6ACFFD00F979BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E8FA82F1F6ACFFD00F979BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F40CC9075D01F728432A7BE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChorusRFLaptimer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8891BD6FCFED4ECB3A650EC8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ChorusRFLaptimer/Pods-ChorusRFLaptimer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AudioPlayerSwift/AudioPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/FZAccordionTableView/FZAccordionTableView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/LDMainFramework/LDMainFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCSVExport/SwiftCSVExport.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FZAccordionTableView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LDMainFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCSVExport.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChorusRFLaptimer/Pods-ChorusRFLaptimer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E8FA80E1F6ACFFD00F979BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D25DF77215ECB8500F63A07 /* FreqVC.swift in Sources */,
+				9D25DF85215ECB8500F63A07 /* CSVExporter.swift in Sources */,
+				9D25DF87215ECB8500F63A07 /* CRFUtility.swift in Sources */,
+				9D25DF82215ECB8500F63A07 /* BluetoothTVC.swift in Sources */,
+				9D25DF7B215ECB8500F63A07 /* PilotVC.swift in Sources */,
+				9D926CAD215F832700B2494D /* CRFBTManager.swift in Sources */,
+				9D25DF8B215ECB8500F63A07 /* CRFMessageParser.swift in Sources */,
+				9D25DF7A215ECB8500F63A07 /* SetupVC.swift in Sources */,
+				9D25DF84215ECB8500F63A07 /* CRFData.swift in Sources */,
+				9D25DF7D215ECB8500F63A07 /* GraphVC.swift in Sources */,
+				9D25DF93215ECB8500F63A07 /* CRFLap.swift in Sources */,
+				9D25DF76215ECB8500F63A07 /* SplashVC.swift in Sources */,
+				9D25DF80215ECB8500F63A07 /* RacePilotLapTVC.swift in Sources */,
+				9D25DF8E215ECB8500F63A07 /* AppDelegate.swift in Sources */,
+				9D25DF78215ECB8500F63A07 /* FreqTVC.swift in Sources */,
+				9D25DF81215ECB8500F63A07 /* ConnectVC.swift in Sources */,
+				9D926CA3215ECCEC00B2494D /* Identifiers.swift in Sources */,
+				9D25DF94215ECB8500F63A07 /* CRFPilot.swift in Sources */,
+				9D25DF79215ECB8500F63A07 /* SpectrumVC.swift in Sources */,
+				9D25DF89215ECB8500F63A07 /* CRFUDPManager.swift in Sources */,
+				9D25DF7C215ECB8500F63A07 /* PilotTVC.swift in Sources */,
+				9D25DF8A215ECB8500F63A07 /* UDPBroadcastConnection.swift in Sources */,
+				9D25DF83215ECB8500F63A07 /* Constants.swift in Sources */,
+				9D25DF7E215ECB8500F63A07 /* RacePilotTVC.swift in Sources */,
+				9D25DF7F215ECB8500F63A07 /* RaceVC.swift in Sources */,
+				9D25DF8D215ECB8500F63A07 /* CRFSendCommandManager.swift in Sources */,
+				9D926CB0215F83F400B2494D /* BluetoothSerial.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E8FA8221F6ACFFD00F979BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E8FA82B1F6ACFFD00F979BD /* ChorusRFLaptimerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E8FA82D1F6ACFFD00F979BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E8FA8361F6ACFFD00F979BD /* ChorusRFLaptimerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E8FA8281F6ACFFD00F979BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E8FA8111F6ACFFD00F979BD /* ChorusRFLaptimer */;
+			targetProxy = 7E8FA8271F6ACFFD00F979BD /* PBXContainerItemProxy */;
+		};
+		7E8FA8331F6ACFFD00F979BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E8FA8111F6ACFFD00F979BD /* ChorusRFLaptimer */;
+			targetProxy = 7E8FA8321F6ACFFD00F979BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7E8FA8381F6ACFFD00F979BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E8FA8391F6ACFFD00F979BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E8FA83B1F6ACFFD00F979BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E4A5C360833742CD9915EC7 /* Pods-ChorusRFLaptimer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ChorusRFLaptimer/Chorus Lap.entitlements";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E5FYD94489;
+				INFOPLIST_FILE = "$(SRCROOT)/ChorusRFLaptimer/Targets/Dev/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypercubesoft.ChorusRFLaptimer;
+				PRODUCT_NAME = "Chorus Lap";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		7E8FA83C1F6ACFFD00F979BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 483B357FE00DBB3AF2C62157 /* Pods-ChorusRFLaptimer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ChorusRFLaptimer/Chorus Lap.entitlements";
+				DEVELOPMENT_TEAM = E5FYD94489;
+				INFOPLIST_FILE = "$(SRCROOT)/ChorusRFLaptimer/Targets/Dev/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypercubesoft.ChorusRFLaptimer;
+				PRODUCT_NAME = "Chorus Lap";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		7E8FA83E1F6ACFFD00F979BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ChorusRFLaptimerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypercubesoft.ChorusRFLaptimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChorusRFLaptimer.app/ChorusRFLaptimer";
+			};
+			name = Debug;
+		};
+		7E8FA83F1F6ACFFD00F979BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ChorusRFLaptimerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypercubesoft.ChorusRFLaptimerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChorusRFLaptimer.app/ChorusRFLaptimer";
+			};
+			name = Release;
+		};
+		7E8FA8411F6ACFFD00F979BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = ChorusRFLaptimerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypercubesoft.ChorusRFLaptimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ChorusRFLaptimer;
+			};
+			name = Debug;
+		};
+		7E8FA8421F6ACFFD00F979BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = ChorusRFLaptimerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hypercubesoft.ChorusRFLaptimerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = ChorusRFLaptimer;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E8FA80D1F6ACFFD00F979BD /* Build configuration list for PBXProject "ChorusRFLaptimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E8FA8381F6ACFFD00F979BD /* Debug */,
+				7E8FA8391F6ACFFD00F979BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E8FA83A1F6ACFFD00F979BD /* Build configuration list for PBXNativeTarget "ChorusRFLaptimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E8FA83B1F6ACFFD00F979BD /* Debug */,
+				7E8FA83C1F6ACFFD00F979BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E8FA83D1F6ACFFD00F979BD /* Build configuration list for PBXNativeTarget "ChorusRFLaptimerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E8FA83E1F6ACFFD00F979BD /* Debug */,
+				7E8FA83F1F6ACFFD00F979BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E8FA8401F6ACFFD00F979BD /* Build configuration list for PBXNativeTarget "ChorusRFLaptimerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E8FA8411F6ACFFD00F979BD /* Debug */,
+				7E8FA8421F6ACFFD00F979BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E8FA80A1F6ACFFD00F979BD /* Project object */;
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "FreqTVC.channelStepperPressed(_:):FreqTVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "static MessageParser.parsMessage(_:):MessageParser.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CRFData.shared.pilots[deviceId]">
+            </PersistentString>
+            <PersistentString
+               value = "btMessage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FreqTVC.setupCell():FreqTVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SetupVC.voltageUpdated():SetupVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CRFData.shared.voltageAdjustment">
+            </PersistentString>
+            <PersistentString
+               value = "CRFData.shared.voltage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CRFPilot.getCurrentPosition():CRFPilot.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CRFData.shared.numberOfDevices">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "FreqTVC.bandStepperPressed(_:):FreqTVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PilotTVC.textFieldDidChange(_:):PilotTVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text">
+            </PersistentString>
+            <PersistentString
+               value = "CRFData.shared.pilots[deviceNumber].name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SetupVC.viewDidLoad():SetupVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "addr">
+            </PersistentString>
+            <PersistentString
+               value = "port">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

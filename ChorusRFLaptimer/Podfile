@@ -1,0 +1,15 @@
+platform :ios, '10.0'
+
+target 'ChorusRFLaptimer' do
+	use_frameworks!
+    pod 'LDMainFramework'
+    pod 'IQKeyboardManagerSwift'
+    pod 'FZAccordionTableView'
+    pod 'SwiftCSVExport'
+    pod 'PKHUD'
+    pod 'AudioPlayerSwift'
+    pod 'SwiftChart'
+    pod 'Firebase/Core'
+    pod 'Fabric'
+    pod 'Crashlytics'
+end

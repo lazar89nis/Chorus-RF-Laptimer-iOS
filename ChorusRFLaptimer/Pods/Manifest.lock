@@ -1,0 +1,82 @@
+PODS:
+  - AudioPlayerSwift (1.6.1)
+  - Crashlytics (3.10.0):
+    - Fabric (~> 1.7.3)
+  - Fabric (1.7.3)
+  - Firebase/Core (4.9.0):
+    - FirebaseAnalytics (= 4.0.9)
+    - FirebaseCore (= 4.0.15)
+  - FirebaseAnalytics (4.0.9):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.15):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (2.0.9):
+    - FirebaseCore (~> 4.0)
+  - FZAccordionTableView (0.2.3)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - IQKeyboardManagerSwift (5.0.7)
+  - LDMainFramework (1.0.0)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - PKHUD (5.0.0)
+  - SwiftChart (1.0.1)
+  - SwiftCSVExport (2.0.0)
+
+DEPENDENCIES:
+  - AudioPlayerSwift
+  - Crashlytics
+  - Fabric
+  - Firebase/Core
+  - FZAccordionTableView
+  - IQKeyboardManagerSwift
+  - LDMainFramework
+  - PKHUD
+  - SwiftChart
+  - SwiftCSVExport
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AudioPlayerSwift
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FZAccordionTableView
+    - GoogleToolboxForMac
+    - IQKeyboardManagerSwift
+    - LDMainFramework
+    - nanopb
+    - PKHUD
+    - SwiftChart
+    - SwiftCSVExport
+
+SPEC CHECKSUMS:
+  AudioPlayerSwift: 90b1bbd228bde3eca6bc59320091c3672486328d
+  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
+  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
+  Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
+  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
+  FirebaseCore: 3bd047463058fa6b5d312c97502c52e45401cdfb
+  FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
+  FZAccordionTableView: e64f49c71c32d750feda14025b088bcd25d1a71f
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
+  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
+  LDMainFramework: 4680319564042a2a1ce4971f38bae063db9f7cb3
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
+  SwiftCSVExport: 36d07bf350d17baacb5a9e9568afe77ff3e5d0f3
+
+PODFILE CHECKSUM: 682e498739b75f3c6a329f5081c9433cfff9e1d4
+
+COCOAPODS: 1.5.3
