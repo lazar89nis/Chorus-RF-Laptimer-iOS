@@ -23,32 +23,52 @@ open class UDPBroadcastConnection {
     /// The address of the UDP socket.
     var address: sockaddr_in
     
+    /// Type of a closure that handles incoming UDP packets.
+    public typealias ReceiveHandler = (_ ipAddress: String, _ port: Int, _ response: Data) -> Void
     /// Closure that handles incoming UDP packets.
-    var handler: ((_ ipAddress: String, _ port: Int, _ response: [UInt8]) -> Void)?
+    var handler: ReceiveHandler?
+    
+    /// Type of a closure that handles errors that were encountered during receiving UDP packets.
+    public typealias ErrorHandler = (_ error: ConnectionError) -> Void
+    /// Closure that handles errors that were encountered during receiving UDP packets.
+    var errorHandler: ErrorHandler?
     
     /// A dispatch source for reading data from the UDP socket.
     var responseSource: DispatchSourceRead?
     
+    /// The dispatch queue to run responseSource & reconnection on
+    var dispatchQueue: DispatchQueue = DispatchQueue.main
+    
+    /// Bind to port to start listening without first sending a message
+    var shouldBeBound: Bool = false
     
     // MARK: Initializers
     
-    /**
-     Initializes the UDP connection with the correct port address. Note: this doesn't open a socket! The socket is opened transparently as needed when sending broadcast messages.
-     
-     - parameter port: Number of the UDP port to use.
-     
-     - returns: Returns an initialized UDP broadcast connection.
-     */
-    public init(port: UInt16, handler: ((_ ipAddress: String, _ port: Int, _ response: [UInt8]) -> Void)?) {
+    /// Initializes the UDP connection with the correct port address.
+    
+    /// - Note: This doesn't open a socket! The socket is opened transparently as needed when sending broadcast messages. If you want to open a socket immediately, use the `bindIt` parameter. This will also try to reopen the socket if it gets closed.
+    ///
+    /// - Parameters:
+    ///   - port: Number of the UDP port to use.
+    ///   - bindIt: Opens a port immediately if true, on demand if false. Default is false.
+    ///   - handler: Handler that gets called when data is received.
+    ///   - errorHandler: Handler that gets called when an error occurs.
+    /// - Throws: Throws a `ConnectionError` if an error occurs.
+    public init(port: UInt16, bindIt: Bool = false, handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
         self.address = sockaddr_in(
             sin_len:    __uint8_t(MemoryLayout<sockaddr_in>.size),
             sin_family: sa_family_t(AF_INET),
             sin_port:   UDPBroadcastConnection.htonsPort(port: port),
-            sin_addr:   INADDR_BROADCAST, 
+            sin_addr:   INADDR_BROADCAST,
             sin_zero:   ( 0, 0, 0, 0, 0, 0, 0, 0 )
         )
         
         self.handler = handler
+        self.errorHandler = errorHandler
+        self.shouldBeBound = bindIt
+        if bindIt {
+            try createSocket()
+        }
     }
     
     deinit {
@@ -60,35 +80,48 @@ open class UDPBroadcastConnection {
     // MARK: Interface
     
     
-    /**
-     Create a UDP socket for broadcasting and set up cancel and event handlers
-     
-     - returns: Returns true if the socket was created successfully.
-     */
-    fileprivate func createSocket() -> Bool {
+    /// Create a UDP socket for broadcasting and set up cancel and event handlers
+    ///
+    /// - Throws: Throws a `ConnectionError` if an error occurs.
+    fileprivate func createSocket() throws {
         
         // Create new socket
-        let newSocket: Int32 = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)
-        guard newSocket > 0 else { return false }
+        let newSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)
+        guard newSocket > 0 else { throw ConnectionError.createSocketFailed }
         
         // Enable broadcast on socket
         var broadcastEnable = Int32(1);
         let ret = setsockopt(newSocket, SOL_SOCKET, SO_BROADCAST, &broadcastEnable, socklen_t(MemoryLayout<UInt32>.size));
         if ret == -1 {
-            print("Couldn't enable broadcast on socket")
+            debugPrint("Couldn't enable broadcast on socket")
             close(newSocket)
-            return false
+            throw ConnectionError.enableBroadcastFailed
+        }
+        
+        // Bind socket if needed
+        if shouldBeBound {
+            var saddr = sockaddr(sa_len: 0, sa_family: 0,
+                                 sa_data: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+            self.address.sin_addr = INADDR_ANY
+            memcpy(&saddr, &self.address, MemoryLayout<sockaddr_in>.size)
+            self.address.sin_addr = INADDR_BROADCAST
+            let isBound = bind(newSocket, &saddr, socklen_t(MemoryLayout<sockaddr_in>.size))
+            if isBound == -1 {
+                debugPrint("Couldn't bind socket")
+                close(newSocket)
+                throw ConnectionError.bindSocketFailed
+            }
         }
         
         // Disable global SIGPIPE handler so that the app doesn't crash
         setNoSigPipe(socket: newSocket)
         
         // Set up a dispatch source
-        let newResponseSource = DispatchSource.makeReadSource(fileDescriptor: newSocket, queue: DispatchQueue.main)
+        let newResponseSource = DispatchSource.makeReadSource(fileDescriptor: newSocket, queue: dispatchQueue)
         
         // Set up cancel handler
         newResponseSource.setCancelHandler {
-            print("Closing UDP socket")
+            debugPrint("Closing UDP socket")
             let UDPSocket = Int32(newResponseSource.handle)
             shutdown(UDPSocket, SHUT_RDWR)
             close(UDPSocket)
@@ -107,105 +140,114 @@ open class UDPBroadcastConnection {
                 recvfrom(UDPSocket, UnsafeMutableRawPointer(mutating: response), response.count, 0, UnsafeMutableRawPointer($0).bindMemory(to: sockaddr.self, capacity: 1), &socketAddressLength)
             }
             
-            guard bytesRead >= 0 else {
-                if let errorString = String(validatingUTF8: strerror(errno)) {
-                    print("recvfrom failed: \(errorString)")
-                }
-                self.closeConnection()
-                return
-            }
-            
-            guard bytesRead > 0 else {
-                print("recvfrom returned EOF")
-                self.closeConnection()
-                return
-            }
-            
-            guard let endpoint = withUnsafePointer(to: &socketAddress, { self.getEndpointFromSocketAddress(socketAddressPointer: UnsafeRawPointer($0).bindMemory(to: sockaddr.self, capacity: 1)) })
-                else {
-                    print("Failed to get the address and port from the socket address received from recvfrom")
+            do {
+                guard bytesRead > 0 else {
                     self.closeConnection()
-                    return
+                    if bytesRead == 0 {
+                        debugPrint("recvfrom returned EOF")
+                        throw ConnectionError.receivedEndOfFile
+                    } else {
+                        if let errorString = String(validatingUTF8: strerror(errno)) {
+                            debugPrint("recvfrom failed: \(errorString)")
+                        }
+                        throw ConnectionError.receiveFailed(code: errno)
+                    }
+                }
+                
+                guard let endpoint = withUnsafePointer(to: &socketAddress, { self.getEndpointFromSocketAddress(socketAddressPointer: UnsafeRawPointer($0).bindMemory(to: sockaddr.self, capacity: 1)) })
+                    else {
+                        debugPrint("Failed to get the address and port from the socket address received from recvfrom")
+                        self.closeConnection()
+                        return
+                }
+                
+                debugPrint("UDP connection received \(bytesRead) bytes from \(endpoint.host):\(endpoint.port)")
+                
+                let responseBytes = Data(response[0..<bytesRead])
+                
+                // Handle response
+                self.handler?(endpoint.host, endpoint.port, responseBytes)
+            } catch {
+                if let error = error as? ConnectionError {
+                    self.errorHandler?(error)
+                } else {
+                    self.errorHandler?(ConnectionError.underlying(error: error))
+                }
             }
-            
-            //print("UDP connection received \(bytesRead) bytes from \(endpoint.host):\(endpoint.port)")
-            
-            // Handle response
-            self.handler?(endpoint.host, endpoint.port, response)
         }
         
         newResponseSource.resume()
         responseSource = newResponseSource
-        
-        return true
     }
     
-    /**
-     Send broadcast message.
-     
-     - parameter message: Message to send via broadcast.
-     */
-    open func sendBroadcast(_ message: String) {
-        
-        guard let data = message.data(using: .utf8) else { return }
-        sendBroadcast(data)
+    /// Send broadcast message.
+    ///
+    /// - Parameter message: Message to send via broadcast.
+    /// - Throws: Throws a `ConnectionError` if an error occurs.
+    open func sendBroadcast(_ message: String) throws {
+        guard let data = message.data(using: .utf8) else { throw ConnectionError.messageEncodingFailed }
+        try sendBroadcast(data)
     }
     
     /// Send broadcast data.
     ///
     /// - Parameter data: Data to send via broadcast.
-    open func sendBroadcast(_ data: Data) {
+    /// - Throws: Throws a `ConnectionError` if an error occurs.
+    open func sendBroadcast(_ data: Data) throws {
         if responseSource == nil {
-            guard createSocket() else {
-                print("UDP ServerConnection initialization failed.")
-                return
-            }
+            try createSocket()
         }
         
         guard let source = responseSource else { return }
         let UDPSocket = Int32(source.handle)
         let socketLength = socklen_t(address.sin_len)
-        data.withUnsafeBytes { (broadcastMessage: UnsafePointer<Int8>) in
+        try data.withUnsafeBytes { (broadcastMessage) in
             let broadcastMessageLength = data.count
             let sent = withUnsafeMutablePointer(to: &address) { pointer -> Int in
                 let memory = UnsafeRawPointer(pointer).bindMemory(to: sockaddr.self, capacity: 1)
-                return sendto(UDPSocket, broadcastMessage, broadcastMessageLength, 0, memory, socketLength)
+                return sendto(UDPSocket, broadcastMessage.baseAddress, broadcastMessageLength, 0, memory, socketLength)
             }
             
             guard sent > 0 else {
                 if let errorString = String(validatingUTF8: strerror(errno)) {
-                    print("UDP connection failed to send data: \(errorString)")
+                    debugPrint("UDP connection failed to send data: \(errorString)")
                 }
                 closeConnection()
-                return
+                throw ConnectionError.sendingMessageFailed(code: errno)
             }
             
             if sent == broadcastMessageLength {
                 // Success
-                print("UDP connection sent \(broadcastMessageLength) bytes")
+                debugPrint("UDP connection sent \(broadcastMessageLength) bytes")
             }
-        }
+        }        
     }
     
-    /**
-     Close the connection.
-     */
-    open func closeConnection() {
+    /// Close the connection.
+    ///
+    /// - Parameter reopen: Automatically reopens the connection if true. Defaults to true.
+    open func closeConnection(reopen: Bool = true) {
         if let source = responseSource {
             source.cancel()
             responseSource = nil
+        }
+        if shouldBeBound && reopen {
+            dispatchQueue.async {
+                do {
+                    try self.createSocket()
+                } catch {
+                    self.errorHandler?(ConnectionError.reopeningSocketFailed(error: error))
+                }
+            }
         }
     }
     
     // MARK: - Helper
     
-    /**
-     Convert a sockaddr structure into an IP address string and port.
-     
-     - parameter socketAddressPointer: Pointer to a socket address.
-     
-     - returns: Returns a tuple of the host IP address and the port in the socket address given.
-     */
+    /// Convert a sockaddr structure into an IP address string and port.
+    ///
+    /// - Parameter socketAddressPointer: socketAddressPointer: Pointer to a socket address.
+    /// - Returns: Returns a tuple of the host IP address and the port in the socket address given.
     func getEndpointFromSocketAddress(socketAddressPointer: UnsafePointer<sockaddr>) -> (host: String, port: Int)? {
         let socketAddress = UnsafePointer<sockaddr>(socketAddressPointer).pointee
         
@@ -234,8 +276,10 @@ open class UDPBroadcastConnection {
     
     // MARK: - Private
     
+    /// Prevents crashes when blocking calls are pending and the app is paused (via Home button).
+    ///
+    /// - Parameter socket: The socket for which the signal should be disabled.
     fileprivate func setNoSigPipe(socket: CInt) {
-        // prevents crashes when blocking calls are pending and the app is paused ( via Home button )
         var no_sig_pipe: Int32 = 1;
         setsockopt(socket, SOL_SOCKET, SO_NOSIGPIPE, &no_sig_pipe, socklen_t(MemoryLayout<Int32>.size));
     }

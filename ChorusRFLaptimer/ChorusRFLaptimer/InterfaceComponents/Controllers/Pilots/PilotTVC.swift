@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 class PilotTVC: UITableViewCell {
 
@@ -33,8 +33,8 @@ class PilotTVC: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        LDAppNotify.observeNotification(self, selector: #selector(updateRSSI), name: NotificationCenterId.RSSIchanged)
+
+        HCAppNotify.observeNotification(self, selector: #selector(updateRSSI), name: NotificationCenterId.RSSIchanged)
         
         pilotNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
@@ -57,7 +57,7 @@ class PilotTVC: UITableViewCell {
     {
         self.deviceNumber = deviceNumber
         
-        colorRibon.backgroundColor = Constants.pilotColor[deviceNumber]
+        colorRibon.backgroundColor = Constants.pilotColor[UserDefaults.standard.integer(forKey: "\(UserDefaultsId.pilotColorIndex)\(deviceNumber)")]
         
         let pilot = CRFData.shared.pilots[deviceNumber]
         pilotTitleLabel.text = "Channel: #\(pilot.channelId+1) (\(Constants.frequencies[pilot.bandId].band) band) \(Constants.frequencies[pilot.bandId].freq[pilot.channelId])MHz"
@@ -100,11 +100,11 @@ class PilotTVC: UITableViewCell {
     
     @IBAction func showGraphPressed(_ sender: Any) {
         
-        let graphVC: GraphVC = UINavigationController.ldGetNC().ldGetVCForIdentifier(ViewControllerId.graphVC, storyBoardName: StoryboardId.mainStoryboard) as! GraphVC
+        let graphVC: GraphVC = UINavigationController.hcGetNC().hcGetVCForIdentifier(ViewControllerId.graphVC, storyBoardName: StoryboardId.mainStoryboard) as! GraphVC
         
         graphVC.deviceNumber = deviceNumber
         
-        UINavigationController.ldGetNC().ldOpenVC(graphVC)
+        UINavigationController.hcGetNC().hcOpenVC(graphVC)
     }
 
     @IBAction func tresholdStepperPressed(_ sender: UIStepper) {
@@ -125,9 +125,13 @@ class PilotTVC: UITableViewCell {
         
         if sender.isOn
         {
+            CRFSendCommandManager.shared.sendMessage("R\(deviceNumber)"+Command.activateRxModul+"1")
+
             showGraphButton.isEnabled = true
             greyView.isHidden = true
         } else {
+            CRFSendCommandManager.shared.sendMessage("R\(deviceNumber)"+Command.activateRxModul+"0")
+            
             greyView.isHidden = false
             showGraphButton.isEnabled = false
         }
@@ -157,9 +161,9 @@ class PilotTVC: UITableViewCell {
         
         if signal > CRFData.shared.pilots[deviceNumber].threshold
         {
-            signalProgressView.progressTintColor = UIColor.ldColorWithHex("c12c2c");
+            signalProgressView.progressTintColor = UIColor.hcColorWithHex("c12c2c");
         } else {
-            signalProgressView.progressTintColor = UIColor.ldColorWithHex("244ACE");
+            signalProgressView.progressTintColor = UIColor.hcColorWithHex("244ACE");
         }
     }
     
@@ -182,7 +186,7 @@ class PilotTVC: UITableViewCell {
     
     @objc func longPressedTresholdLabel(sender: UILongPressGestureRecognizer)
     {
-        if sender.state != UIGestureRecognizerState.began
+        if sender.state != UIGestureRecognizer.State.began
         {
             return
         }
@@ -204,7 +208,7 @@ class PilotTVC: UITableViewCell {
             self.tresholdLabel.text = "\(self.treshold)"
             
             CRFData.shared.pilots[self.deviceNumber].threshold = self.treshold
-            
+
             CRFSendCommandManager.shared.sendMessage(String(format: "R\(self.deviceNumber)"+Command.setThresholdValue+"%04X",self.treshold))
             
             UserDefaults.standard.setValue(self.treshold, forKey: "Device\(self.deviceNumber)Threshold")
@@ -220,7 +224,7 @@ class PilotTVC: UITableViewCell {
     
     @objc func longPressedClearButton(sender: UILongPressGestureRecognizer)
     {
-        if sender.state != UIGestureRecognizerState.began
+        if sender.state != UIGestureRecognizer.State.began
         {
             return
         }
@@ -235,7 +239,13 @@ class PilotTVC: UITableViewCell {
         }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    /*override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }*/
+    
+    @IBAction func colorPressed(_ sender: Any) {
+        let button = sender as! UIButton
+        HCAppNotify.postNotification(NotificationCenterId.setColorPressed, object: ["bounds":button.frame, "pilotId": deviceNumber] as AnyObject?)
+
     }
 }

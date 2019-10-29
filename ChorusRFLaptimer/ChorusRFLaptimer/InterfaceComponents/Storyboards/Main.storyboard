@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BfY-8a-nwk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BfY-8a-nwk">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -809,7 +809,7 @@
                             <constraint firstItem="GqW-FO-o7z" firstAttribute="centerX" secondItem="cUN-Xn-RZR" secondAttribute="centerX" id="dPc-KV-Icz"/>
                             <constraint firstItem="cUN-Xn-RZR" firstAttribute="centerY" secondItem="lWN-7q-SnY" secondAttribute="centerY" multiplier="0.9" id="iYN-Nr-Ooj"/>
                             <constraint firstItem="cUN-Xn-RZR" firstAttribute="centerX" secondItem="Vu1-vw-Zlg" secondAttribute="centerX" id="t2a-vF-aAn"/>
-                            <constraint firstItem="Ird-TM-ATU" firstAttribute="top" secondItem="Vu1-vw-Zlg" secondAttribute="bottom" id="tEx-Zd-RaK"/>
+                            <constraint firstAttribute="bottom" secondItem="Vu1-vw-Zlg" secondAttribute="bottom" constant="49" id="tEx-Zd-RaK"/>
                             <constraint firstAttribute="trailing" secondItem="Vu1-vw-Zlg" secondAttribute="trailing" id="veD-nR-sap"/>
                             <constraint firstItem="Vu1-vw-Zlg" firstAttribute="top" secondItem="3Bg-py-Trw" secondAttribute="bottom" id="xcx-2M-Xpp"/>
                             <constraint firstItem="GqW-FO-o7z" firstAttribute="width" secondItem="cUN-Xn-RZR" secondAttribute="width" id="z7y-HF-MI7"/>
@@ -829,7 +829,7 @@
         <!--PILOTS-->
         <scene sceneID="jJA-v6-ayh">
             <objects>
-                <viewController restorationIdentifier="PilotVC" storyboardIdentifier="PilotVC" id="806-nW-NIW" customClass="PilotVC" customModule="Chorus_Lap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="PilotVC" storyboardIdentifier="PilotVC" automaticallyAdjustsScrollViewInsets="NO" id="806-nW-NIW" customClass="PilotVC" customModule="Chorus_Lap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lKO-hK-XOI"/>
                         <viewControllerLayoutGuide type="bottom" id="0kQ-O6-V1B"/>
@@ -862,7 +862,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Rm9-bz-H5f" secondAttribute="bottom" id="wzB-5x-rYP"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="253" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pPg-vI-wfb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="253" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="pPg-vI-wfb">
                                 <rect key="frame" x="0.0" y="111" width="375" height="507"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -1445,13 +1445,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btIcon" width="21.600000381469727" height="21.600000381469727"/>
-        <image name="freqIcon" width="21.600000381469727" height="21.600000381469727"/>
+        <image name="btIcon" width="30" height="30"/>
+        <image name="freqIcon" width="30" height="30"/>
         <image name="hypercubeLogo" width="500" height="333"/>
         <image name="logov2" width="1024" height="1024"/>
         <image name="noDeviceConnected" width="500" height="500"/>
-        <image name="pilotsIcon" width="21.600000381469727" height="21.600000381469727"/>
-        <image name="raceIcon" width="21.600000381469727" height="21.600000381469727"/>
-        <image name="settingsIcon" width="21.600000381469727" height="21.600000381469727"/>
+        <image name="pilotsIcon" width="30" height="30"/>
+        <image name="raceIcon" width="30" height="30"/>
+        <image name="settingsIcon" width="30" height="30"/>
     </resources>
 </document>

@@ -1,49 +1,84 @@
 PODS:
-  - AudioPlayerSwift (1.6.1)
-  - Crashlytics (3.10.0):
-    - Fabric (~> 1.7.3)
-  - Fabric (1.7.3)
-  - Firebase/Core (4.9.0):
-    - FirebaseAnalytics (= 4.0.9)
-    - FirebaseCore (= 4.0.15)
-  - FirebaseAnalytics (4.0.9):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - ActionSheetPicker-3.0 (2.3.0)
+  - AudioPlayerSwift (2.0.0)
+  - Crashlytics (3.12.0):
+    - Fabric (~> 1.9.0)
+  - Fabric (1.9.0)
+  - Firebase/Core (5.20.2):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.8.1)
+  - Firebase/CoreOnly (5.20.2):
+    - FirebaseCore (= 5.4.1)
+  - FirebaseAnalytics (5.8.1):
+    - FirebaseCore (~> 5.4)
+    - FirebaseInstanceID (~> 3.8)
+    - GoogleAppMeasurement (= 5.8.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.15):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (2.0.9):
-    - FirebaseCore (~> 4.0)
+  - FirebaseCore (5.4.1):
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.8.1):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/UserDefaults (~> 5.2)
   - FZAccordionTableView (0.2.3)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.3)":
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - IQKeyboardManagerSwift (5.0.7)
-  - LDMainFramework (1.0.0)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
-  - PKHUD (5.0.0)
+  - GoogleAppMeasurement (5.8.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.7.0):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.7.0)
+  - GoogleUtilities/Logger (5.7.0):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.7.0):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.7.0)"
+  - GoogleUtilities/Reachability (5.7.0):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.7.0):
+    - GoogleUtilities/Logger
+  - HCFramework (1.2.12)
+  - IQKeyboardManagerSwift (6.2.1)
+  - MKColorPicker (1.2)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - PKHUD (5.2.1)
   - SwiftChart (1.0.1)
-  - SwiftCSVExport (2.0.0)
+  - SwiftCSVExport (2.0.1)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - AudioPlayerSwift
   - Crashlytics
   - Fabric
   - Firebase/Core
   - FZAccordionTableView
+  - HCFramework (from `https://github.com/Hypercubesoft/HCFramework.git`)
   - IQKeyboardManagerSwift
-  - LDMainFramework
+  - MKColorPicker
   - PKHUD
   - SwiftChart
   - SwiftCSVExport
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
+    - ActionSheetPicker-3.0
     - AudioPlayerSwift
     - Crashlytics
     - Fabric
@@ -52,31 +87,44 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FZAccordionTableView
-    - GoogleToolboxForMac
+    - GoogleAppMeasurement
+    - GoogleUtilities
     - IQKeyboardManagerSwift
-    - LDMainFramework
+    - MKColorPicker
     - nanopb
     - PKHUD
     - SwiftChart
     - SwiftCSVExport
 
+EXTERNAL SOURCES:
+  HCFramework:
+    :git: https://github.com/Hypercubesoft/HCFramework.git
+
+CHECKOUT OPTIONS:
+  HCFramework:
+    :commit: 9b6660570897e7956f214813823c8188204bf8e0
+    :git: https://github.com/Hypercubesoft/HCFramework.git
+
 SPEC CHECKSUMS:
-  AudioPlayerSwift: 90b1bbd228bde3eca6bc59320091c3672486328d
-  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
-  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
-  Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
-  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
-  FirebaseCore: 3bd047463058fa6b5d312c97502c52e45401cdfb
-  FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  AudioPlayerSwift: 26d1c95f177f5bd195be482a41538d7ab8d04dd9
+  Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  Fabric: f988e33c97f08930a413e08123064d2e5f68d655
+  Firebase: 0c8cf33f266410c61ab3e2265cfa412200351d9c
+  FirebaseAnalytics: ece1aa57a4f43c64d53a648b5a5e05151aae947b
+  FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
+  FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
   FZAccordionTableView: e64f49c71c32d750feda14025b088bcd25d1a71f
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  IQKeyboardManagerSwift: 30fb3a61de1af53a95e02b80fb54ed0a19d5ede5
-  LDMainFramework: 4680319564042a2a1ce4971f38bae063db9f7cb3
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
+  GoogleUtilities: 273e67030e0de313e7304f6dcfa96fc5214f6c23
+  HCFramework: 9b1e47cb7f82ecc926eef4f6257f97f3117aa503
+  IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
+  MKColorPicker: 8998b2ab977e4f240fdf254db27a18b810da3cfc
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
-  SwiftCSVExport: 36d07bf350d17baacb5a9e9568afe77ff3e5d0f3
+  SwiftCSVExport: a2baa3904699e9d5b66dc1a15111d8172ade84dc
 
-PODFILE CHECKSUM: 682e498739b75f3c6a329f5081c9433cfff9e1d4
+PODFILE CHECKSUM: af1ae065c6583638e502a541575b8b09e021a655
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

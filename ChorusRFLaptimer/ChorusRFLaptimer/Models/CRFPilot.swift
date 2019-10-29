@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 class CRFPilot: NSObject {
 
@@ -40,6 +40,7 @@ class CRFPilot: NSObject {
         {
             name = pilotName
         }
+        
         Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(CRFPilot.storeRSSI), userInfo: nil, repeats: true)
     }
     
@@ -60,7 +61,7 @@ class CRFPilot: NSObject {
         }
         RSSIS.append(Double(RSSI))
         
-        LDAppNotify.postNotification(NotificationCenterId.RSSISupdated, object: false as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.RSSISupdated, object: false as AnyObject?)
     }
     
     func getPilotName() -> String

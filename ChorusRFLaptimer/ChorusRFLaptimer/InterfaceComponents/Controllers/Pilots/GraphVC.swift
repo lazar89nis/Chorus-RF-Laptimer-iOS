@@ -3,12 +3,12 @@
 //  ChorusRFLaptimer
 //
 //  Created by Lazar Djordjevic on 10/20/17.
-//  Copyright © 2017 Lazar. All rights reserved.
+//  Copyright © 2017 Hypercube. All rights reserved.
 //
 
 import UIKit
 import SwiftChart
-import LDMainFramework
+import HCFramework
 
 class GraphVC: UIViewController,ChartDelegate {
 
@@ -38,8 +38,8 @@ class GraphVC: UIViewController,ChartDelegate {
         chart.yLabels = [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350]
         chart.bottomInset = 0
         
-        LDAppNotify.observeNotification(self, selector: #selector(reloadGraph), name: NotificationCenterId.RSSISupdated)
-        LDAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
+        HCAppNotify.observeNotification(self, selector: #selector(reloadGraph), name: NotificationCenterId.RSSISupdated)
+        HCAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,14 +50,14 @@ class GraphVC: UIViewController,ChartDelegate {
     
     @objc func goBack()
     {
-        self.navigationController?.ldGoBack()
+        self.navigationController?.hcGoBack()
     }
     
     // MARK: - notifications
     
     @objc func serialDidDisconnect()
     {
-        LDAppNotify.removeObserver(self)
+        HCAppNotify.removeObserver(self)
         goBack()
     }
     
@@ -65,7 +65,7 @@ class GraphVC: UIViewController,ChartDelegate {
     {
         chart.removeAllSeries()
         let series = ChartSeries(CRFData.shared.pilots[deviceNumber].RSSIS)
-        series.color = UIColor.ldColorWithHex("244ACE")
+        series.color = UIColor.hcColorWithHex("244ACE")
         series.area = true
         chart.add(series)
         

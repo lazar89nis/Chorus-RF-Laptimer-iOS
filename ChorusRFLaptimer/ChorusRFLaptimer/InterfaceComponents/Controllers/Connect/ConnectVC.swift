@@ -8,7 +8,7 @@
 
 import UIKit
 import PKHUD
-import LDMainFramework
+import HCFramework
 import Crashlytics
 
 class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -80,19 +80,19 @@ class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         devicesTableView.reloadData()
         
-        LDAppNotify.observeNotification(self, selector: #selector(showHudWithText(_:)), name: NotificationCenterId.showHudWithText)
-        LDAppNotify.observeNotification(self, selector: #selector(setScanButtonState(_:)), name: NotificationCenterId.setScanButtonState)
-        LDAppNotify.observeNotification(self, selector: #selector(setStatusText(_:)), name: NotificationCenterId.setStatusText)
-        LDAppNotify.observeNotification(self, selector: #selector(reloadTableData), name: NotificationCenterId.reloadTableData)
-        LDAppNotify.observeNotification(self, selector: #selector(hideHud), name: NotificationCenterId.hideHud)
-        LDAppNotify.observeNotification(self, selector: #selector(uDPConnected), name: NotificationCenterId.UDPConnected)
+        HCAppNotify.observeNotification(self, selector: #selector(showHudWithText(_:)), name: NotificationCenterId.showHudWithText)
+        HCAppNotify.observeNotification(self, selector: #selector(setScanButtonState(_:)), name: NotificationCenterId.setScanButtonState)
+        HCAppNotify.observeNotification(self, selector: #selector(setStatusText(_:)), name: NotificationCenterId.setStatusText)
+        HCAppNotify.observeNotification(self, selector: #selector(reloadTableData), name: NotificationCenterId.reloadTableData)
+        HCAppNotify.observeNotification(self, selector: #selector(hideHud), name: NotificationCenterId.hideHud)
+        HCAppNotify.observeNotification(self, selector: #selector(uDPConnected), name: NotificationCenterId.UDPConnected)
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         
-        LDAppNotify.removeObserver(self)
+        HCAppNotify.removeObserver(self)
     }
     
     // MARK: - notifications
@@ -105,7 +105,7 @@ class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         HUD.show(HUDContentType.label(text))
         
-        LDUtility.ldDelay(2)
+        HCUtility.hcDelay(2)
         {
             HUD.hide()
         }
@@ -199,7 +199,7 @@ class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         } else {
             HUD.show(HUDContentType.label("No device connected"))
             
-            LDUtility.ldDelay(2)
+            HCUtility.hcDelay(2)
             {
                 HUD.hide()
             }
@@ -225,7 +225,7 @@ class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
         HUD.show(HUDContentType.label("Failed to connect to WiFi device"))
         
-        LDUtility.ldDelay(2)
+        HCUtility.hcDelay(2)
         {
             HUD.hide()
         }
@@ -239,7 +239,7 @@ class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         HUD.show(HUDContentType.success)
         
-        LDUtility.ldDelay(2)
+        HCUtility.hcDelay(2)
         {
             HUD.hide()
         }
@@ -260,7 +260,7 @@ class ConnectVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         HUD.show(HUDContentType.label("Failed to connect"))
         
-        LDUtility.ldDelay(2)
+        HCUtility.hcDelay(2)
         {
             HUD.hide()
         }

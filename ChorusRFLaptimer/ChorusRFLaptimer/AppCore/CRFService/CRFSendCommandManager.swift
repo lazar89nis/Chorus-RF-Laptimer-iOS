@@ -3,7 +3,7 @@
 //  ChorusRFLaptimer
 //
 //  Created by Lazar Djordjevic on 11/30/17.
-//  Copyright © 2017 Lazar. All rights reserved.
+//  Copyright © 2017 Hypercube. All rights reserved.
 //
 
 import UIKit
@@ -26,6 +26,11 @@ struct Command
     static let calibration = "t"
     static let setThresholdValue = "T"
     static let liPoVoltage = "v"
+    static let ledSetColor = "TC"
+    static let ledCountdown = "T"
+    static let ledCountdownPrepare = "TP"
+    static let ledCheckColors = "TS"
+    static let activateRxModul = "A"
 }
 
 class CRFSendCommandManager: NSObject
@@ -38,13 +43,13 @@ class CRFSendCommandManager: NSObject
     
     func sendMessage(_ message: String)
     {
-        if CRFUDPManager.shared.broadcastConnection != nil && CRFUDPManager.shared.broadcastConnection.responseSource != nil
-        {
-            CRFUDPManager.shared.sendMessage(message)
-        } else if CRFBTManager.shared.selectedPeripheral != nil
+         if CRFBTManager.shared.selectedPeripheral != nil
         {
             CRFBTManager.shared.sendMessage(message)
-        } else {
+         } else if CRFUDPManager.shared.broadcastConnection != nil && CRFUDPManager.shared.broadcastConnection.responseSource != nil
+         {
+            CRFUDPManager.shared.sendMessage(message)
+         } else {
             print("App not connected");
         }
     }

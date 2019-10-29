@@ -3,7 +3,7 @@
 //  ChorusRFLaptimer
 //
 //  Created by Lazar Djordjevic on 8/22/18.
-//  Copyright © 2018 Lazar. All rights reserved.
+//  Copyright © 2018 Hypercube. All rights reserved.
 //
 
 import Foundation
@@ -27,7 +27,7 @@ struct UserDefaultsId
     static let voltageMonitorOn = "VoltageMonitorOn"
     static let isBTMode = "IsBTMode"
     static let phoneSleep = "PhoneSleep"
-    
+    static let pilotColorIndex = "PilotColorIndex"
 }
 
 struct NotificationCenterId
@@ -49,6 +49,8 @@ struct NotificationCenterId
     static let reportStageChanged = "ReportStageChanged"
     static let frequencyChangedSpectrum = "FrequencyChangedSpectrum"
     static let RSSISupdated = "RSSISupdated"
+    static let setColorPressed = "SetColorPressed"
+    static let rxEnableChanged = "RxEnableChanged"
 }
 
 enum ViewControllerId

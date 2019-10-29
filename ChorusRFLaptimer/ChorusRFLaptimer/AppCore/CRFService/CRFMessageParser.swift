@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 class CRFMessageParser: NSObject {
     
@@ -23,7 +23,7 @@ class CRFMessageParser: NSObject {
         
         if message.count >= 2
         {
-            let lastTwoChars = message.ldSubstring(from: message.count-1 , to:message.count)
+            let lastTwoChars = message.hcSubstring(from: message.count-1 , to:message.count)
             if lastTwoChars == "\n"
             {
                 CRFMessageParser.btMessage+=message
@@ -51,49 +51,54 @@ class CRFMessageParser: NSObject {
             }
             if command.count >= 2
             {
-                let firstChar = command.ldSubstring(to: 0)
+                let firstChar = command.hcSubstring(to: 0)
                 
                 if firstChar == "N" //device number
                 {
-                    if let deviceId = Int(command.ldSubstring(from: 1 , to:1)) {
+                    if let deviceId = Int(command.hcSubstring(from: 1 , to:1)) {
                         CRFData.shared.resetPilots(deviceId)
+                        CRFSendCommandManager.shared.sendMessage("TN\(deviceId)")
+
                     }
                 } else if firstChar == "S"
                 {
-                    if let deviceId = Int(command.ldSubstring(from: 1 , to:1))
+                    if let deviceId = Int(command.hcSubstring(from: 1 , to:1))
                     {
-                        let thirdChar = command.ldSubstring(from: 2 , to:2)
+                        let thirdChar = command.hcSubstring(from: 2 , to:2)
                         switch thirdChar {
                             
                         case "r": //MARK: <r> RSSI ***RSSI***
-                            var valueStr = command.ldSubstring(from: 3 , to:7)
+                            var valueStr = command.hcSubstring(from: 3 , to:7)
                             valueStr = String(valueStr.filter { !" \n".contains($0) })
                             if let value = UInt64(valueStr, radix: 16)
                             {
                                 if CRFData.shared.pilots.count > deviceId
                                 {
                                     CRFData.shared.pilots[deviceId].RSSI = Int(value)
-                                    LDAppNotify.postNotification(NotificationCenterId.RSSIchanged, object: nil as AnyObject?)
+                                    HCAppNotify.postNotification(NotificationCenterId.RSSIchanged, object: nil as AnyObject?)
                                 }
                                 
                                 if deviceId == 0
                                 {
-                                    LDAppNotify.postNotification(NotificationCenterId.RSSIchangedSpectrum, object: Int(value) as AnyObject?)
+                                    HCAppNotify.postNotification(NotificationCenterId.RSSIchangedSpectrum, object: Int(value) as AnyObject?)
                                 }
                             }
                             
                         case "L": //MARK: <L> lap time ***Lap time***
-                            let lapNumber = command.ldSubstring(from: 3 , to:4)
-                            let lapTime = command.ldSubstring(from: 5 , to:12)
+                            let lapNumber = command.hcSubstring(from: 3 , to:4)
+                            let lapTime = command.hcSubstring(from: 5 , to:12)
                             
                             if let lapNumberValue = UInt64(lapNumber, radix: 16)
                             {
                                 if let lapTimeValue = UInt64(lapTime, radix: 16)
                                 {
-                                    CRFData.shared.pilots[deviceId].laps.append(CRFLap(lapTime: lapTimeValue, lapNumber: Int(lapNumberValue)))
-                                    LDAppNotify.postNotification(NotificationCenterId.newTimeRecorded, object: nil as AnyObject?)
-                                    
                                     let pilot = CRFData.shared.pilots[deviceId]
+                                    
+                                    if pilot.isEnabled
+                                    {
+                                        CRFData.shared.pilots[deviceId].laps.append(CRFLap(lapTime: lapTimeValue, lapNumber: Int(lapNumberValue)))
+                                        HCAppNotify.postNotification(NotificationCenterId.newTimeRecorded, object: nil as AnyObject?)
+                                    }
                                     
                                     if CRFData.shared.speakLapTimes && pilot.isEnabled
                                     {
@@ -120,7 +125,7 @@ class CRFMessageParser: NSObject {
                                             formatter3.dateFormat = "SSSS"
                                             var raceTimeMili = formatter3.string(from: date)
                                             
-                                            raceTimeMili = raceTimeMili.ldSubstring(from: 0 , to:1)
+                                            raceTimeMili = raceTimeMili.hcSubstring(from: 0 , to:1)
                                             
                                             if Constants.printMessageLogs
                                             {
@@ -170,7 +175,7 @@ class CRFMessageParser: NSObject {
                             
                         case "C": //MARK: <C> channel ***Channel***
                             let pilot = CRFData.shared.pilots[deviceId]
-                            let channel = command.ldSubstring(from: 3 , to:3)
+                            let channel = command.hcSubstring(from: 3 , to:3)
                             
                             if let channelValue = UInt64(channel, radix: 16) {
                                 pilot.channelId = Int(channelValue)
@@ -178,14 +183,14 @@ class CRFMessageParser: NSObject {
                             
                         case "B": //MARK: <B> band ***Band***
                             let pilot = CRFData.shared.pilots[deviceId]
-                            let band = command.ldSubstring(from: 3 , to:4)
+                            let band = command.hcSubstring(from: 3 , to:4)
                             
                             if let bandValue = UInt64(band, radix: 16) {
                                 pilot.bandId = Int(bandValue)
                             }
                             
                         case "M": //MARK: <M> minLapTime ***Min Lap Time***
-                            let minLapTime = command.ldSubstring(from: 3 , to:4)
+                            let minLapTime = command.hcSubstring(from: 3 , to:4)
                             
                             if let minLapTimeValue = UInt64(minLapTime, radix: 16) {
                                 CRFData.shared.minLapTime = Int(minLapTimeValue)
@@ -193,15 +198,15 @@ class CRFMessageParser: NSObject {
                             
                         case "T": //MARK: <T> threshold ***Threshold***
                             let pilot = CRFData.shared.pilots[deviceId]
-                            let threshold = command.ldSubstring(from: 3 , to:6)
+                            let threshold = command.hcSubstring(from: 3 , to:6)
                             
                             if let thresholdValue = UInt64(threshold, radix: 16) {
                                 pilot.threshold = Int(thresholdValue)
                             }
-                            LDAppNotify.postNotification(NotificationCenterId.thresholdUpdated, object: nil as AnyObject?)
+                            HCAppNotify.postNotification(NotificationCenterId.thresholdUpdated, object: nil as AnyObject?)
                             
                         case "S": //MARK: <S> deviceSound ***Enable/Disable Sounds***
-                            let deviceSoundEnabled = command.ldSubstring(from: 3 , to:3)
+                            let deviceSoundEnabled = command.hcSubstring(from: 3 , to:3)
                             
                             if deviceSoundEnabled == "0"
                             {
@@ -211,7 +216,7 @@ class CRFMessageParser: NSObject {
                             }
                             
                         case "1": //MARK: <1> skipFirstLap ***Skip/Enable First Lap***
-                            let skipFirstLapEnabled = command.ldSubstring(from: 3 , to:3)
+                            let skipFirstLapEnabled = command.hcSubstring(from: 3 , to:3)
                             
                             if skipFirstLapEnabled == "0"
                             {
@@ -221,7 +226,7 @@ class CRFMessageParser: NSObject {
                             }
                             
                         case "y": //MARK: <y> isDeviceConfigured ***Was device configured***
-                            let isDeviceConfigured = command.ldSubstring(from: 3 , to:3)
+                            let isDeviceConfigured = command.hcSubstring(from: 3 , to:3)
                             if isDeviceConfigured == "0"
                             {
                                 CRFData.shared.pilots[deviceId].isDeviceConfigured = false
@@ -231,6 +236,8 @@ class CRFMessageParser: NSObject {
                                     print("*********isDeviceConfigured NO")
                                 }
                                 
+                                CRFSendCommandManager.shared.sendMessage("R\(deviceId)"+Command.activateRxModul+"1")
+                                
                                 let bandId = UserDefaults.standard.integer(forKey: "Device\(deviceId)Band")
                                 let channelId = UserDefaults.standard.integer(forKey: "Device\(deviceId)Channel")
                                 let threshold = UserDefaults.standard.integer(forKey: "Device\(deviceId)Threshold")
@@ -238,6 +245,7 @@ class CRFMessageParser: NSObject {
                                 CRFSendCommandManager.shared.sendMessage(String(format: "R\(deviceId)"+Command.setThresholdValue+"%04X",threshold))
                                 CRFSendCommandManager.shared.sendMessage("R\(deviceId)"+Command.setChannel+"\(channelId)")
                                 CRFSendCommandManager.shared.sendMessage("R\(deviceId)"+Command.setBand+"\(bandId)")
+                                
                                 
                             } else {
                                 CRFData.shared.pilots[deviceId].isDeviceConfigured = true
@@ -249,7 +257,7 @@ class CRFMessageParser: NSObject {
                             }
                             
                         case "R": //MARK: <R> Race state ***Start Race/End Race***
-                            let raceState = command.ldSubstring(from: 3 , to:3)
+                            let raceState = command.hcSubstring(from: 3 , to:3)
                             if raceState == "0"
                             {
                                 CRFData.shared.raceIsOn = false
@@ -258,15 +266,15 @@ class CRFMessageParser: NSObject {
                             }
                             
                         case "v": //MARK: <v> voltageReading ***Get LiPo Voltage***
-                            let voltage = command.ldSubstring(from: 3 , to:6)
+                            let voltage = command.hcSubstring(from: 3 , to:6)
                             
                             if let voltageValue = UInt64(voltage, radix: 16) {
                                 CRFData.shared.voltage = Int(voltageValue)
                             }
-                            LDAppNotify.postNotification(NotificationCenterId.voltageUpdated, object: nil as AnyObject?)
+                            HCAppNotify.postNotification(NotificationCenterId.voltageUpdated, object: nil as AnyObject?)
                             
                         case "t": //MARK: <t> calibrationTime
-                            let timeNeeded = command.ldSubstring(from: 3 , to:10)
+                            let timeNeeded = command.hcSubstring(from: 3 , to:10)
                             
                             if let timeNeededValue = Int32(timeNeeded, radix: 16)
                             {
@@ -275,21 +283,21 @@ class CRFMessageParser: NSObject {
                                     CRFData.shared.pilots[deviceId].calibrationTime1 = Int32(timeNeededValue)
                                 } else {
                                     CRFData.shared.pilots[deviceId].calibrationTime2 = Int32(timeNeededValue)
-                                    LDAppNotify.postNotification(NotificationCenterId.calibrationTimeReceved, object: nil as AnyObject?)
+                                    HCAppNotify.postNotification(NotificationCenterId.calibrationTimeReceved, object: nil as AnyObject?)
                                 }
                             }
                             
                         case "H": //MARK: <H> reportStageChanged
-                            let reportStage = command.ldSubstring(from: 3 , to:3)
+                            let reportStage = command.hcSubstring(from: 3 , to:3)
                             
                             if let reportStageValue = Int(reportStage) {
                                 
                                 CRFData.shared.pilots[deviceId].calibrationStage = reportStageValue
-                                LDAppNotify.postNotification(NotificationCenterId.reportStageChanged, object: nil as AnyObject?)
+                                HCAppNotify.postNotification(NotificationCenterId.reportStageChanged, object: nil as AnyObject?)
                             }
                             
                         case "F": //MARK: <F> frequency
-                            let frequency = command.ldSubstring(from: 3 , to:6)
+                            let frequency = command.hcSubstring(from: 3 , to:6)
                             if let frequencyValue = Int32(frequency, radix: 16)
                             {
                                 if Constants.printMessageLogs
@@ -299,17 +307,17 @@ class CRFMessageParser: NSObject {
                                 
                                 if deviceId == 0
                                 {
-                                    LDAppNotify.postNotification(NotificationCenterId.frequencyChangedSpectrum, object: frequencyValue as AnyObject?)
+                                    HCAppNotify.postNotification(NotificationCenterId.frequencyChangedSpectrum, object: frequencyValue as AnyObject?)
                                 }
                             }
                             
                         case "x": //MARK: <x> Calibration
-                            LDUtility.ldDelay(2.0)
+                            HCUtility.hcDelay(2.0)
                             {
                                 CRFData.shared.setupInProgress = false
                             }
                         case "#": //MARK: <#> API VERSION
-                            let apiVersion = command.ldSubstring(from: 3 , to:6)
+                            let apiVersion = command.hcSubstring(from: 3 , to:6)
                             
                             if let apiVersionValue = UInt64(apiVersion, radix: 16) {
                                 if Constants.printMessageLogs
@@ -319,14 +327,14 @@ class CRFMessageParser: NSObject {
                                 
                                 if apiVersionValue != Constants.lastAPIVersion
                                 {
-                                    LDDialog.showDialog(message: "Node(\(deviceId) has API VERSION: \(apiVersionValue))", title: "API VERSION ERROR")
+                                    HCDialog.showDialog(message: "Node(\(deviceId) has API VERSION: \(apiVersionValue))", title: "API VERSION ERROR")
                                 }
                                 
                                 CRFData.shared.pilots[deviceId].apiVersion = Int(apiVersionValue)
                             }
                             
                         case "I": //MARK: <I> RSSI Monitoring Interval
-                            let monitorInterval = command.ldSubstring(from: 3 , to:6)
+                            let monitorInterval = command.hcSubstring(from: 3 , to:6)
                             
                             if let monitorIntervalValue = UInt64(monitorInterval, radix: 16)
                             {
@@ -335,7 +343,22 @@ class CRFMessageParser: NSObject {
                                     print("RSSI Monitoring Interval: \(monitorIntervalValue)")
                                 }
                             }
+                        case "A": //MARK: <A> Activate/Deactivate Rx module
+                            let rxActive = command.hcSubstring(from: 3 , to:3)
                             
+                            if Constants.printMessageLogs
+                            {
+                                print("Activate/Deactivate Rx module: \(rxActive)")
+                            }
+                            
+                            if rxActive == "0"
+                            {
+                                CRFData.shared.pilots[deviceId].isEnabled = false
+                            } else {
+                                CRFData.shared.pilots[deviceId].isEnabled = true
+                            }
+                            
+                            HCAppNotify.postNotification(NotificationCenterId.rxEnableChanged, object: nil as AnyObject?)
                         default:
                             if Constants.printMessageLogs
                             {

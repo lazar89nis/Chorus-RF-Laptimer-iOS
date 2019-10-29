@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AF36E3BED79B36259059D0849E9C4798"
+               BlueprintIdentifier = "00984CDD017788BC4467B24D456FF036"
+               BuildableName = "SwiftCSVExport.framework"
                BlueprintName = "SwiftCSVExport"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SwiftCSVExport.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

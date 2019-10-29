@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 class FreqTVC: UITableViewCell {
 
@@ -38,7 +38,7 @@ class FreqTVC: UITableViewCell {
             bottomSeparator.isHidden = true
         }
         
-        LDAppNotify.observeNotification(self, selector: #selector(updateRSSI), name: NotificationCenterId.RSSIchanged)
+        HCAppNotify.observeNotification(self, selector: #selector(updateRSSI), name: NotificationCenterId.RSSIchanged)
     }
     
     func setupCell(deviceNumber: Int)
@@ -54,8 +54,8 @@ class FreqTVC: UITableViewCell {
         deviceName.text = "Device #\(deviceNumber)"
         bandLabel.text = Constants.frequencies[band].band
         channelLabel.text = "#\(channel+1) - \(Constants.frequencies[band].freq[channel])MHz"
-        colorRibon.backgroundColor = Constants.pilotColor[deviceNumber]
-        
+        colorRibon.backgroundColor = Constants.pilotColor[UserDefaults.standard.integer(forKey: "\(UserDefaultsId.pilotColorIndex)\(deviceNumber)")]
+
         updateRSSI()
     }
     
@@ -73,9 +73,9 @@ class FreqTVC: UITableViewCell {
         
         if signal > CRFData.shared.pilots[deviceNumber].threshold
         {
-            signalProgressView.progressTintColor = UIColor.ldColorWithHex("c12c2c");
+            signalProgressView.progressTintColor = UIColor.hcColorWithHex("c12c2c");
         } else {
-            signalProgressView.progressTintColor = UIColor.ldColorWithHex("244ACE");
+            signalProgressView.progressTintColor = UIColor.hcColorWithHex("244ACE");
         }
     }
     

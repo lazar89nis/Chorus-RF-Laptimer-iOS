@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 struct BandFreq
 {
@@ -26,14 +26,23 @@ class Constants: NSObject
                                           BandFreq(band:"Connex1", freq: [5180,5200,5220,5240,5745,5765,5785,5805]),
                                           BandFreq(band:"Connex2", freq: [5825,5845,5845,5845,5845,5845,5845,5845])]
     
-    static let pilotColor: [UIColor] = [UIColor.ldColorWithHex("4ECDC4"),
-                                        UIColor.ldColorWithHex("C7F464"),
-                                        UIColor.ldColorWithHex("FF6B6B"),
-                                        UIColor.ldColorWithHex("C44D58"),
-                                        UIColor.ldColorWithHex("3E4CB2"),
-                                        UIColor.ldColorWithHex("049652"),
-                                        UIColor.ldColorWithHex("6F8206"),
-                                        UIColor.ldColorWithHex("F7C683")]
+    static var pilotColor:[UIColor] = [UIColor.red,
+                            UIColor.yellow,
+                            UIColor.green,
+                            UIColor.blue,
+                            UIColor.orange,
+                            UIColor(red: 0, green: 255/255.0, blue: 255/255.0, alpha: 1.0),
+                            UIColor.purple,
+                            UIColor(red: 255/255.0, green: 0, blue: 208/255.0, alpha: 1.0)]
+    
+    /*static let pilotColor: [UIColor] = [UIColor.hcColorWithHex("4ECDC4"),
+                                        UIColor.hcColorWithHex("C7F464"),
+                                        UIColor.hcColorWithHex("FF6B6B"),
+                                        UIColor.hcColorWithHex("C44D58"),
+                                        UIColor.hcColorWithHex("3E4CB2"),
+                                        UIColor.hcColorWithHex("049652"),
+                                        UIColor.hcColorWithHex("6F8206"),
+                                        UIColor.hcColorWithHex("F7C683")]*/
     
     static let exportCSVFieldLap = "LAP"
     static let exportCSVFieldPilot = "PILOT"
@@ -49,5 +58,5 @@ class Constants: NSObject
     static let RSSIGraphMinValue = 130
     static let RSSIGraphMaxValue = 310
     
-    static let lastAPIVersion = 4
+    static let lastAPIVersion = 6
 }

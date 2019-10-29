@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreBluetooth
-import LDMainFramework
+import HCFramework
 
 class CRFBTManager: NSObject, BluetoothSerialDelegate, CBPeripheralDelegate {
 
@@ -93,7 +93,7 @@ class CRFBTManager: NSObject, BluetoothSerialDelegate, CBPeripheralDelegate {
         peripherals.append((peripheral: peripheral, RSSI: theRSSI))
         peripherals.sort { $0.RSSI < $1.RSSI }
         
-        LDAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
     }
     
     func serialDidReceiveString(_ message: String) {
@@ -102,52 +102,52 @@ class CRFBTManager: NSObject, BluetoothSerialDelegate, CBPeripheralDelegate {
     
     func serialDidFailToConnect(_ peripheral: CBPeripheral, error: NSError?)
     {
-        LDAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
 
-        LDAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Failed to connect" as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Failed to connect" as AnyObject?)
     }
     
     func serialDidDisconnect(_ peripheral: CBPeripheral, error: NSError?)
     {
         CRFData.shared.resetPilots(0)
         
-        LDAppNotify.postNotification(NotificationCenterId.serialDidDisconnect, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.serialDidDisconnect, object: nil as AnyObject?)
         
-        LDAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
         
-        LDAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
 
-        LDAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Bluetooth Disconnect" as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Bluetooth Disconnect" as AnyObject?)
     }
     
     func serialIsReady(_ peripheral: CBPeripheral)
     {
-        LDAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
         
-        LDAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Connected" as AnyObject?)
-        LDAppNotify.postNotification(NotificationCenterId.startBTRSSI, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Connected" as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.startBTRSSI, object: nil as AnyObject?)
 
         CRFSendCommandManager.shared.sendMessage(Command.enumerateDevices+"0")
     }
     
     func serialDidChangeState() {
-        LDAppNotify.postNotification(NotificationCenterId.hideHud, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.hideHud, object: nil as AnyObject?)
         
         if serial.centralManager.state != .poweredOn {
-            LDAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: false as AnyObject?)
+            HCAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: false as AnyObject?)
 
-            LDAppNotify.postNotification(NotificationCenterId.setStatusText, object: "Bluetooth not turned on" as AnyObject?)
+            HCAppNotify.postNotification(NotificationCenterId.setStatusText, object: "Bluetooth not turned on" as AnyObject?)
         } else if serial.centralManager.state == .poweredOn
         {
-            LDAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
+            HCAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
 
-            LDAppNotify.postNotification(NotificationCenterId.setStatusText, object: "Bluetooth is turned on" as AnyObject?)
+            HCAppNotify.postNotification(NotificationCenterId.setStatusText, object: "Bluetooth is turned on" as AnyObject?)
         }
     }
     
     func startRSSI()
     {
-        LDUtility.ldDelay(3)
+        HCUtility.hcDelay(3)
         {
             self.updateRSSI()
         }
@@ -163,7 +163,7 @@ class CRFBTManager: NSObject, BluetoothSerialDelegate, CBPeripheralDelegate {
         
         serial.readRSSI()
         
-        LDUtility.ldDelay(1)
+        HCUtility.hcDelay(1)
         {
             self.updateRSSI()
         }
@@ -172,6 +172,6 @@ class CRFBTManager: NSObject, BluetoothSerialDelegate, CBPeripheralDelegate {
     func serialDidReadRSSI(_ rssi: NSNumber)
     {
         selectedPeripheralRssi = rssi
-        LDAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
     }
 }

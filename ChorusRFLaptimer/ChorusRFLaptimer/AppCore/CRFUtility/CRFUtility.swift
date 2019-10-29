@@ -25,6 +25,11 @@ class CRFUtility: NSObject {
         CRFUtility.speechSynthesizer.speak(speechUtterance)
     }
     
+    static func stopSpeak()
+    {
+        speechSynthesizer.stopSpeaking(at: .immediate)
+    }
+    
     static func setupAudioSounds()
     {
         do {

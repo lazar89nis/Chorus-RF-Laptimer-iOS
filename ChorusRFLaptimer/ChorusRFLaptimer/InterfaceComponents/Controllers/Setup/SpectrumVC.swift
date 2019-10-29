@@ -3,12 +3,12 @@
 //  ChorusRFLaptimer
 //
 //  Created by Lazar Djordjevic on 6/22/18.
-//  Copyright © 2018 Lazar. All rights reserved.
+//  Copyright © 2018 Hypercube. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import LDMainFramework
+import HCFramework
 import SwiftChart
 
 struct Spectrum
@@ -70,8 +70,8 @@ class SpectrumVC: UIViewController, ChartDelegate
         
         super.viewWillAppear(animated)
         
-        LDAppNotify.observeNotification(self, selector: #selector(RSSIchangedSpectrum(_:)), name: NotificationCenterId.RSSIchangedSpectrum)
-        LDAppNotify.observeNotification(self, selector: #selector(frequencyChangedSpectrum(_:)), name: NotificationCenterId.frequencyChangedSpectrum)
+        HCAppNotify.observeNotification(self, selector: #selector(RSSIchangedSpectrum(_:)), name: NotificationCenterId.RSSIchangedSpectrum)
+        HCAppNotify.observeNotification(self, selector: #selector(frequencyChangedSpectrum(_:)), name: NotificationCenterId.frequencyChangedSpectrum)
         
         CRFSendCommandManager.shared.sendMessage("R*"+Command.rssiMonitor+"0000")
     }
@@ -130,7 +130,7 @@ class SpectrumVC: UIViewController, ChartDelegate
     
     @objc func goBack()
     {
-        self.navigationController?.ldGoBack()
+        self.navigationController?.hcGoBack()
     }
     
     func reloadGraph()
@@ -144,7 +144,7 @@ class SpectrumVC: UIViewController, ChartDelegate
             series = ChartSeries(data: [(x:Double(minfreq) , y:Double(Constants.RSSIGraphMinValue))])
         }
 
-        series.color = UIColor.ldColorWithHex("244ACE")
+        series.color = UIColor.hcColorWithHex("244ACE")
         series.area = true
         chart.add(series)
     }

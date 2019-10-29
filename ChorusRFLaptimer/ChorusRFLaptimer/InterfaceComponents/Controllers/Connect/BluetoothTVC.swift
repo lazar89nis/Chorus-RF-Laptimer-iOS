@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreBluetooth
-import LDMainFramework
+import HCFramework
 
 class BluetoothTVC: UITableViewCell {
 

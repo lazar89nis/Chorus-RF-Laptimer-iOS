@@ -3,11 +3,11 @@
 //  ChorusRFLaptimer
 //
 //  Created by Lazar Djordjevic on 11/30/17.
-//  Copyright © 2017 Lazar. All rights reserved.
+//  Copyright © 2017 Hypercube. All rights reserved.
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 import SystemConfiguration.CaptiveNetwork
 
 class CRFUDPManager: NSObject {
@@ -38,11 +38,11 @@ class CRFUDPManager: NSObject {
         
         CRFData.shared.resetPilots(0)
         
-        LDAppNotify.postNotification(NotificationCenterId.serialDidDisconnect, object: nil as AnyObject?)
-        LDAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
-        LDAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.serialDidDisconnect, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.reloadTableData, object: nil as AnyObject?)
+        HCAppNotify.postNotification(NotificationCenterId.setScanButtonState, object: true as AnyObject?)
 
-        LDUtility.ldDelay(2)
+        HCUtility.hcDelay(2)
         {
             self.tryToConnect()
         }
@@ -50,30 +50,78 @@ class CRFUDPManager: NSObject {
     
     func tryToConnect()
     {
-        broadcastConnection = UDPBroadcastConnection(port: 9000) { [unowned self] (ipAddress: String, port: Int, response: [UInt8]) -> Void in
+        
+        do {
+            broadcastConnection = try UDPBroadcastConnection(
+                port: 9000,
+                handler: { [weak self] (ipAddress: String, port: Int, response: Data) -> Void in
+                    guard let self = self else { return }
+                    //let hexString = self.hexBytes(data: response)
+                    //let utf8String = String(data: response, encoding: .utf8) ?? ""
+                    
+                    if let myResponse = String(bytes: response, encoding: .utf8)
+                    {
+                        let myResponse = myResponse.components(separatedBy: "\0")
+                        
+                        if self.firstMessage
+                        {
+                            HCAppNotify.postNotification(NotificationCenterId.UDPConnected, object: nil)
+                            HCAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Connected to WiFi module!" as AnyObject?)
+                        }
+                        
+                        CRFMessageParser.parsMessage(myResponse[0])
+                        
+                        self.firstMessage = false
+                    }
+                    
+                    
+                    //print("UDP connection received from \(ipAddress):\(port):\n\(hexString)\n\(utf8String)\n")
+                    //print("Received from \(ipAddress):\(port):\n\(hexString)\n\(utf8String)\n")
+                },
+                errorHandler: { [weak self] (error) in
+                    guard let self = self else { return }
+                    print("Error: \(error)\n")
+            })
+        } catch {
+            print("Error: \(error)\n")
+        }
+        
+        
+        /*broadcastConnection = UDPBroadcastConnection(port: 9000) { [unowned self] (response: (ipAddress: String, port: Int, response: [UInt8])) -> Void in
             
-            if let myResponse = String(bytes: response, encoding: .utf8)
+            if let myResponse = String(bytes: response.response, encoding: .utf8)
             {
                 let myResponse = myResponse.components(separatedBy: "\0")
                 
                 if self.firstMessage
                 {
-                    LDAppNotify.postNotification(NotificationCenterId.UDPConnected, object: nil)
-                    LDAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Connected to WiFi module!" as AnyObject?)
+                    HCAppNotify.postNotification(NotificationCenterId.UDPConnected, object: nil)
+                    HCAppNotify.postNotification(NotificationCenterId.showHudWithText, object: "Connected to WiFi module!" as AnyObject?)
                 }
                 
                 CRFMessageParser.parsMessage(myResponse[0])
                 
                 self.firstMessage = false
             }
+        }*/
+        
+        do {
+            try broadcastConnection.sendBroadcast(Command.enumerateDevices+"0"+Constants.wifiCommandEscapeSequence)
+            //log("Sent: '\(Config.Strings.broadcastMessage)'\n")
+        } catch {
+            print("Error: \(error)\n")
         }
         
-        broadcastConnection.sendBroadcast(Command.enumerateDevices+"0"+Constants.wifiCommandEscapeSequence)
     }
     
     func sendMessage(_ myMessage: String)
     {
-        broadcastConnection.sendBroadcast(myMessage+Constants.wifiCommandEscapeSequence)
+        do {
+            try broadcastConnection.sendBroadcast(myMessage+Constants.wifiCommandEscapeSequence)
+            //log("Sent: '\(Config.Strings.broadcastMessage)'\n")
+        } catch {
+            print("Error: \(error)\n")
+        }
     }
     
     func printCurrentWifiInfo() -> String {

@@ -49,18 +49,18 @@ class CSVExporter: NSObject {
         writeCSVObj.fields = fields as NSArray
         writeCSVObj.name = "myFile"
 
-        let result = exportCSV(writeCSVObj);
-        if result.isSuccess {
-            guard let filePath =  result.value else {
-                print("Export Error: \(String(describing: result.value))")
+        let output = CSVExport.export(writeCSVObj);
+        if output.result.isSuccess {
+            guard let filePath =  output.filePath else {
+                print("Export Error: \(String(describing: output.message))")
                 return ""
             }
             
+            print("File Path: \(filePath)")
             return filePath
         } else {
-            print("Export Error: \(String(describing: result.value))")
-        }
-        
+            print("Export Error: \(String(describing: output.message))")
+        }        
         return ""
     }
 }

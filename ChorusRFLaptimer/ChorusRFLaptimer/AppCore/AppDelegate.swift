@@ -13,7 +13,7 @@ import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var orientationLock = UIInterfaceOrientationMask.all
+    var orientationLock = UIInterfaceOrientationMask.portrait
     var window: UIWindow?
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
@@ -33,10 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
-        IQKeyboardManager.sharedManager().enable = true
-        IQKeyboardManager.sharedManager().shouldShowToolbarPlaceholder = false
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         
         setupDefaultValues()
         
@@ -56,6 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.register(defaults: [UserDefaultsId.voltageMonitorOn : false])
         UserDefaults.standard.register(defaults: [UserDefaultsId.isBTMode : true])
         UserDefaults.standard.register(defaults: [UserDefaultsId.phoneSleep : true])
+        
+        for i in 0...7
+        {
+            UserDefaults.standard.register(defaults: ["\(UserDefaultsId.pilotColorIndex)\(i)" : i])
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {    }

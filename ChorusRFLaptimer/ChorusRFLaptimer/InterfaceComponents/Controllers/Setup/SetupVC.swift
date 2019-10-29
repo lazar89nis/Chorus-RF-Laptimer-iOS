@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-import LDMainFramework
+import HCFramework
 import PKHUD
 
 class SetupVC: UIViewController {
@@ -50,9 +50,9 @@ class SetupVC: UIViewController {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
         lipoTouchView.addGestureRecognizer(longPressRecognizer)
         
-        LDAppNotify.observeNotification(self, selector: #selector(calibrationTimeReceved), name: NotificationCenterId.calibrationTimeReceved)
-        LDAppNotify.observeNotification(self, selector: #selector(voltageUpdated), name: NotificationCenterId.voltageUpdated)
-        LDAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
+        HCAppNotify.observeNotification(self, selector: #selector(calibrationTimeReceved), name: NotificationCenterId.calibrationTimeReceved)
+        HCAppNotify.observeNotification(self, selector: #selector(voltageUpdated), name: NotificationCenterId.voltageUpdated)
+        HCAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
         
         checkVoltage()
     }
@@ -105,7 +105,7 @@ class SetupVC: UIViewController {
     
     @objc func longPressed(sender: UILongPressGestureRecognizer)
     {
-        if sender.state != UIGestureRecognizerState.began
+        if sender.state != UIGestureRecognizer.State.began
         {
             return
         }
@@ -144,7 +144,7 @@ class SetupVC: UIViewController {
             
             HUD.show(HUDContentType.label("Calibration is done"))
             
-            LDUtility.ldDelay(2)
+            HCUtility.hcDelay(2)
             {
                 HUD.hide()
                 self.calibrationInProgress = false
@@ -160,7 +160,7 @@ class SetupVC: UIViewController {
         }
         
         let batteryVoltage = Double(CRFData.shared.voltage) * 11 * 5 * ((Double(CRFData.shared.voltageAdjustment) + 1000) / 1000) / 1024 //FIXME: This part looks bad
-        let cellCount = Int(batteryVoltage/3.4)
+        let cellCount = Int(floor(batteryVoltage/3.4))
         let cellVoltage = batteryVoltage/Double(cellCount)
         var percent = Int(((cellVoltage - 3.4) * 100 / (4.2 - 3.4)))
         
@@ -190,7 +190,7 @@ class SetupVC: UIViewController {
                     CRFUtility.speak(talkString)
                     canWarnVoltage = false
                     
-                    LDUtility.ldDelay(50)
+                    HCUtility.hcDelay(50)
                     {
                         self.canWarnVoltage = true
                     }
@@ -224,7 +224,7 @@ class SetupVC: UIViewController {
     
     func checkVoltage()
     {
-        LDUtility.ldDelay(10)
+        HCUtility.hcDelay(10)
         {
             self.checkVoltage()
         }
@@ -243,11 +243,11 @@ class SetupVC: UIViewController {
         
         if percent >= 50
         {
-            lipoProgress.progressTintColor = UIColor.ldColorWithHex("64c12c")
+            lipoProgress.progressTintColor = UIColor.hcColorWithHex("64c12c")
         } else if percent <= 50 && percent >= 30  {
-            lipoProgress.progressTintColor = UIColor.ldColorWithHex("c1bc2c")
+            lipoProgress.progressTintColor = UIColor.hcColorWithHex("c1bc2c")
         } else if percent < 30 {
-            lipoProgress.progressTintColor = UIColor.ldColorWithHex("c12c2c")
+            lipoProgress.progressTintColor = UIColor.hcColorWithHex("c12c2c")
         }
     }
     
@@ -262,6 +262,10 @@ class SetupVC: UIViewController {
     
     @IBAction func speakLapTimesPressed(_ sender: UISwitch) {
         
+        if !sender.isOn
+        {
+            CRFUtility.stopSpeak()
+        }
         CRFData.shared.speakLapTimes = sender.isOn
         
         UserDefaults.standard.setValue(sender.isOn, forKey: UserDefaultsId.speakLapTimes)
@@ -369,17 +373,17 @@ class SetupVC: UIViewController {
         
         CRFSendCommandManager.shared.sendMessage("R*"+Command.calibration)
         
-        LDUtility.ldDelay(Double(Constants.calibrateWaitTime/1000))
+        HCUtility.hcDelay(Double(Constants.calibrateWaitTime/1000))
         {
             CRFSendCommandManager.shared.sendMessage("R*"+Command.calibration)
         }
         
-        LDUtility.ldDelay(Double((Constants.calibrateWaitTime+7000)/1000))
+        HCUtility.hcDelay(Double((Constants.calibrateWaitTime+7000)/1000))
         {
             if self.calibrationInProgress
             {
                 HUD.show(HUDContentType.label("Calibration failed. Try again"))
-                LDUtility.ldDelay(2)
+                HCUtility.hcDelay(2)
                 {
                     HUD.hide()
                     self.calibrationInProgress = false

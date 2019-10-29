@@ -3,23 +3,24 @@
 //  ChorusRFLaptimer
 //
 //  Created by Lazar Djordjevic on 10/28/17.
-//  Copyright © 2017 Lazar. All rights reserved.
+//  Copyright © 2017 Hypercube. All rights reserved.
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 class SplashVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
                 
-        LDUtility.ldDelay(2)
+        HCUtility.hcDelay(2)
         {
             let storyboard = UIStoryboard(name: StoryboardId.mainStoryboard, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: ViewControllerId.navController)
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            
+            vc.modalPresentationStyle = .fullScreen
+
             self.present(vc, animated: true, completion: nil)
         }
     }

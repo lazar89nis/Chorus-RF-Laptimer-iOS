@@ -9,7 +9,7 @@
 import UIKit
 import FZAccordionTableView
 import MessageUI
-import LDMainFramework
+import HCFramework
 import AVFoundation
 import PKHUD
 
@@ -40,14 +40,14 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
         
         sendButtonHeight.constant = 0
         
-        LDAppNotify.observeNotification(self, selector: #selector(reloadTable), name: NotificationCenterId.newTimeRecorded)
-        LDAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
+        HCAppNotify.observeNotification(self, selector: #selector(reloadTable), name: NotificationCenterId.newTimeRecorded)
+        HCAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+                
         super.viewWillAppear(animated)
-        
+
         CRFData.shared.pilotsInRace.removeAll()
         
         for pilot in CRFData.shared.pilots
@@ -65,10 +65,10 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
         if CRFData.shared.pilotsInRace.count < 1
         {
             startRaceButton.isEnabled = false
-            startRaceButton.backgroundColor = UIColor.ldColorWithHex("717171")
+            startRaceButton.backgroundColor = UIColor.hcColorWithHex("717171")
         } else {
             startRaceButton.isEnabled = true
-            startRaceButton.backgroundColor = UIColor.ldColorWithHex("2C4594")
+            startRaceButton.backgroundColor = UIColor.hcColorWithHex("2C4594")
         }
         
         if CRFData.shared.raceIsOn
@@ -99,7 +99,7 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
     @objc func serialDidDisconnect()
     {
         startRaceButton.isEnabled = false
-        startRaceButton.backgroundColor = UIColor.ldColorWithHex("717171")
+        startRaceButton.backgroundColor = UIColor.hcColorWithHex("717171")
         raceTableView.reloadData()
     }
     
@@ -117,6 +117,17 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
             HUD.show(HUDContentType.label("GO"))
             startRace()
         } else {
+            if CRFData.shared.timeToPrepareForRace-numberOfBips-1 == 3
+            {
+                CRFSendCommandManager.shared.sendMessage(Command.ledCountdown+"\(3)")
+            } else if CRFData.shared.timeToPrepareForRace-numberOfBips-1 == 2
+            {
+                CRFSendCommandManager.shared.sendMessage(Command.ledCountdown+"\(2)")
+            } else if CRFData.shared.timeToPrepareForRace-numberOfBips-1 == 1
+            {
+                CRFSendCommandManager.shared.sendMessage(Command.ledCountdown+"\(1)")
+            }
+            
             HUD.show(HUDContentType.label("Race start in: \(CRFData.shared.timeToPrepareForRace-numberOfBips-1)"))
         }
         
@@ -128,18 +139,18 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
         }
         numberOfBips += 1
         
-        LDUtility.ldDelay(0.3)
+        HCUtility.hcDelay(0.3)
         {
             if CRFData.shared.timeToPrepareForRace <= self.numberOfBips + 1
             {
-                LDUtility.ldDelay(1.5)
+                HCUtility.hcDelay(1.5)
                 {
                     HUD.hide()
                 }
             }
         }
         
-        LDUtility.ldDelay(1)
+        HCUtility.hcDelay(1)
         {
             if CRFData.shared.timeToPrepareForRace > self.numberOfBips
             {
@@ -151,8 +162,7 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
     func startRace()
     {
         //UIApplication.shared.isIdleTimerDisabled = true
-        
-        startRaceButton.setTitle("STOP RACE", for: .normal)
+        self.startRaceButton.setTitle("STOP RACE", for: .normal)
         CRFSendCommandManager.shared.sendMessage("R*"+Command.race+"1")
         CRFData.shared.raceIsOn = true
     }
@@ -214,11 +224,14 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
                 sendButtonHeight.constant = UIScreen.main.bounds.width*0.1253
             }
         } else {
+            CRFSendCommandManager.shared.sendMessage(Command.ledCountdownPrepare)
+
             startRaceButton.setTitle("PREPARE...", for: .normal)
             
             CRFData.shared.resetPilotTimes()
             raceTableView.reloadData()
-            beepSound()
+            
+            self.beepSound()
 
             sendButtonHeight.constant = 0
         }
@@ -293,7 +306,7 @@ class RaceVC: UIViewController, FZAccordionTableViewDelegate,UITableViewDelegate
         backgroundView.backgroundColor = UIColor(white: 1, alpha: 1)
         cell.backgroundView = backgroundView
        
-        cell.setupCell(deviceNumber: section, pilot: pilot, colorRibonColor: Constants.pilotColor[pilot.pilotID])
+        cell.setupCell(deviceNumber: section, pilot: pilot)
 
         return cell
     }

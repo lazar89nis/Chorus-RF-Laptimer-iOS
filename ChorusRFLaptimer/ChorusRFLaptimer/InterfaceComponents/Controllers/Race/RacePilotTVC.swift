@@ -22,10 +22,10 @@ class RacePilotTVC: FZAccordionTableViewHeaderView {
     @IBOutlet weak var raceStatusLabel: UILabel!
     @IBOutlet weak var lapNumberLabel: UILabel!
     
-    func setupCell(deviceNumber: Int, pilot: CRFPilot, colorRibonColor: UIColor)
+    func setupCell(deviceNumber: Int, pilot: CRFPilot)
     {
-        colorRibon.backgroundColor = colorRibonColor
-        
+        colorRibon.backgroundColor = Constants.pilotColor[UserDefaults.standard.integer(forKey: "\(UserDefaultsId.pilotColorIndex)\(pilot.pilotID)")]
+
         var lapCount = pilot.laps.count
         if CRFData.shared.skipFirstLap
         {

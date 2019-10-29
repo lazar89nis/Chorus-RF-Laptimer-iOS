@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PilotTVC" id="f1d-Ps-dBx" customClass="PilotTVC" customModule="Chorus_Lap" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="PilotTVC" rowHeight="213" id="f1d-Ps-dBx" customClass="PilotTVC" customModule="Chorus_Lap" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="213"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f1d-Ps-dBx" id="MNJ-9U-NfR">
@@ -82,12 +82,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pilot 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A6k-CZ-rhb">
-                                <rect key="frame" x="117" y="10" width="243" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="this is some pilot name" borderStyle="roundedRect" placeholder="Pilot 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A6k-CZ-rhb">
+                                <rect key="frame" x="107" y="10" width="198" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skN-8f-sSE">
+                                <rect key="frame" x="310" y="9" width="60" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Color">
+                                    <color key="titleColor" red="0.12247958034276962" green="0.25296410918235779" blue="0.72068887948989868" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="colorPressed:" destination="f1d-Ps-dBx" eventType="touchUpInside" id="pvZ-xg-yjb"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ut0-OX-HnI" userLabel="Separator">
                                 <rect key="frame" x="15" y="49" width="360" height="1"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.79607843140000001" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -98,18 +108,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="skN-8f-sSE" firstAttribute="leading" secondItem="A6k-CZ-rhb" secondAttribute="trailing" constant="5" id="3g5-wy-SmY"/>
                             <constraint firstItem="h7J-YG-wi3" firstAttribute="leading" secondItem="YwY-5R-ns9" secondAttribute="leading" constant="15" id="5hA-3K-ROS"/>
                             <constraint firstItem="h7J-YG-wi3" firstAttribute="top" secondItem="YwY-5R-ns9" secondAttribute="top" id="6Lg-QH-Kf0"/>
-                            <constraint firstItem="A6k-CZ-rhb" firstAttribute="leading" secondItem="1Du-zH-Qhy" secondAttribute="trailing" constant="15" id="DNc-uN-GFa"/>
+                            <constraint firstAttribute="trailing" secondItem="skN-8f-sSE" secondAttribute="trailing" constant="5" id="8NT-r3-rqc"/>
+                            <constraint firstItem="A6k-CZ-rhb" firstAttribute="leading" secondItem="1Du-zH-Qhy" secondAttribute="trailing" constant="5" id="DNc-uN-GFa"/>
                             <constraint firstItem="1Du-zH-Qhy" firstAttribute="leading" secondItem="YwY-5R-ns9" secondAttribute="leading" constant="15" id="Jga-gl-qfG"/>
                             <constraint firstAttribute="bottom" secondItem="Ut0-OX-HnI" secondAttribute="bottom" id="NSL-bW-8vE"/>
                             <constraint firstAttribute="trailing" secondItem="Ut0-OX-HnI" secondAttribute="trailing" id="OWM-KP-3f7"/>
                             <constraint firstItem="Ut0-OX-HnI" firstAttribute="leading" secondItem="YwY-5R-ns9" secondAttribute="leading" constant="15" id="Rfc-3f-SDt"/>
+                            <constraint firstItem="skN-8f-sSE" firstAttribute="centerY" secondItem="YwY-5R-ns9" secondAttribute="centerY" id="SOL-K7-Lif"/>
                             <constraint firstAttribute="width" secondItem="YwY-5R-ns9" secondAttribute="height" multiplier="375:50" id="Y6I-8W-eAb"/>
                             <constraint firstItem="1Du-zH-Qhy" firstAttribute="centerY" secondItem="YwY-5R-ns9" secondAttribute="centerY" id="a7u-y8-SkO"/>
                             <constraint firstItem="A6k-CZ-rhb" firstAttribute="centerY" secondItem="YwY-5R-ns9" secondAttribute="centerY" id="eyu-gf-MXU"/>
                             <constraint firstAttribute="trailing" secondItem="h7J-YG-wi3" secondAttribute="trailing" id="f60-0V-Fr4"/>
-                            <constraint firstAttribute="trailing" secondItem="A6k-CZ-rhb" secondAttribute="trailing" constant="15" id="zAC-i5-AJu"/>
+                            <constraint firstAttribute="trailing" secondItem="A6k-CZ-rhb" secondAttribute="trailing" constant="70" id="zAC-i5-AJu"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVw-g9-z1H" userLabel="RSSI threshold">

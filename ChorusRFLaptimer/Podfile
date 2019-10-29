@@ -1,15 +1,15 @@
-platform :ios, '10.0'
-
 target 'ChorusRFLaptimer' do
 	use_frameworks!
-    pod 'LDMainFramework'
     pod 'IQKeyboardManagerSwift'
     pod 'FZAccordionTableView'
     pod 'SwiftCSVExport'
     pod 'PKHUD'
+    pod 'HCFramework', :git => 'https://github.com/Hypercubesoft/HCFramework.git'
     pod 'AudioPlayerSwift'
     pod 'SwiftChart'
     pod 'Firebase/Core'
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'ActionSheetPicker-3.0'
+    pod 'MKColorPicker'
 end

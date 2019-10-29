@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import LDMainFramework
+import HCFramework
 
 class FreqVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -25,7 +25,7 @@ class FreqVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         freqTableView.register(UINib(nibName: CellId.freqTVC, bundle:nil), forCellReuseIdentifier: CellId.freqTVC)
 
-        LDAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
+        HCAppNotify.observeNotification(self, selector: #selector(serialDidDisconnect), name: NotificationCenterId.serialDidDisconnect)
     }
 
     override func viewWillAppear(_ animated: Bool) {
